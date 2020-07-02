@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EndpointService } from 'src/app/servieces/endpoint.service';
 
 @Component({
   selector: 'app-films',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmsComponent implements OnInit {
 
-  constructor() { }
+  items = [];
+  constructor(private end: EndpointService) { }
 
   ngOnInit(): void {
-  }
 
+     this.end.getFilms().subscribe(data => {
+      this.items = data.results;
+      console.log(this.items)
+    })
+  }
 }

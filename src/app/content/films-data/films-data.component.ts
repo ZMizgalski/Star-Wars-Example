@@ -1,38 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 
 @Component({
-  selector: 'app-character-data-spec',
-  templateUrl: './character-data-spec.component.html',
-  styleUrls: ['./character-data-spec.component.css']
+  selector: 'app-films-data',
+  templateUrl: './films-data.component.html',
+  styleUrls: ['./films-data.component.css']
 })
-export class CharacterDataSpecComponent implements OnInit {
+export class FilmsDataComponent implements OnInit {
 
   id: any;
 
   // Main Inf
-  name: string;
-  birth: string;
+  title: string;
+  director: string;
   species: any;
-  home: any;
-  gender: string;
-  hair: string;
-  skin: string;
-  height: string;
-  mass: string;
+  planets: any;
+  episode: string;
+  created: string;
+  producer: string;
+  openingInf: string;
 
   // Linked Inf
   specInf: string;
   homeInf: string;
 
   // Endpoint After
-  films: any;
   starS: any;
   vehicles: any;
 
   // clean arrays
-  filmsRoutes = [];
+  planetsRoutes = [];
   shipsRoutes = [];
   vehiclesRoutes = [];
 
@@ -41,18 +39,18 @@ export class CharacterDataSpecComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     // console.log(this.id);
-    this.end.getPersonById(this.id).subscribe(data => {
-       // console.log(data);
-      this.name = data.name;
-      this.birth = data.birth_year;
-      this.gender = data.gender;
-      this.hair = data.hair_color;
-      this.skin = data.skin_color;
-      this.height = data.height;
-      this.mass = data.mass;
-      this.home = data.homeworld;
+    this.end.getFilmById(this.id).subscribe(data => {
+     //  console.log(data);
+      this.title = data.title;
+      this.director = data.director;
+      this.episode = data.episode_id;
+      this.created = data.created;
+      this.producer = data.producer;
+      this.openingInf = data.opening_crawl;
+
+
+      this.planets = data.planets;
       this.species = data.species;
-      this.films = data.films;
       this.starS = data.starships;
       this.vehicles = data.vehicles;
 
@@ -62,11 +60,11 @@ export class CharacterDataSpecComponent implements OnInit {
 
 
 
-      if (this.films.length > 0) {
-        for (let i = 0; i < this.films.length; i++) {
-          const path = this.films[i];
+      if (this.planets.length > 0) {
+        for (let i = 0; i < this.planets.length; i++) {
+          const path = this.planets[i];
         const result = path.split("/")
-        this.filmsRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
+        this.planetsRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
         }
        // console.log(this.filmsRoutes)
       }
@@ -89,10 +87,10 @@ export class CharacterDataSpecComponent implements OnInit {
         // console.log(this.vehiclesRoutes)
       }
 
+/*
 
-
-      if (this.home.length > 0) {
-        const result = this.home.split("/")
+      if (this.planets.length > 0) {
+        const result = this.planets.split("/")
         // console.log(result[result.length - 2]);
         this.end.getPlanetById(result[result.length - 2]).subscribe(data => {
           this.homeInf = data.name;
@@ -101,13 +99,14 @@ export class CharacterDataSpecComponent implements OnInit {
       }
 
       if (this.species.length > 0) {
-        const result = this.home.split("/")
+        const result = this.planets.split("/")
         // console.log(result[result.length - 2]);
       this.end.getSpeciesById(result[result.length - 2]).subscribe(data => {
         this.specInf = data.name;
        // console.log(data);
       })
     }
+    */
 
       //console.log(data);
     })

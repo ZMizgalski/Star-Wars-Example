@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EndpointService} from '../../servieces/endpoint.service';
+
 
 @Component({
   selector: 'app-character-data',
@@ -7,15 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterDataComponent implements OnInit {
 
-  items = [
-    {CharName: 'Luke', imageName: 'Luke', router: 'luke'},
-    {CharName: 'Leia', imageName: 'Leia', router: 'leia'},
-    {CharName: 'Vader', imageName: 'Vader', router: 'vader'},
-    {CharName: 'C3PO', imageName: 'C3PO', router: 'c3po'}
-  ];
-  constructor() { }
+  items = [];
+  constructor(private end: EndpointService) { }
 
   ngOnInit(): void {
+
+     this.end.getPepole().subscribe(data => {
+      this.items = data.results;
+      console.log(this.items)
+    })
   }
 
 }

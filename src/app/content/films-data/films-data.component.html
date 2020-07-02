@@ -9,22 +9,19 @@
 
           <div class="img-char">
 
-            <p style="color: black;">{{name}}</p>
+            <p style="color: black;">{{title}}</p>
 
           </div>
-          <p style="color: black;">{{name}}</p>
+          <p style="color: black;">{{title}}</p>
         </div>
 
         <div class="char-desc-con">
 
-        <p>Birth Year: {{birth}}</p>
-        <p>Species: {{specInf}}</p>
-        <p>Home World: {{homeInf}}</p>
-        <p>Gender: {{gender}}</p>
-        <p>Hair Color: {{hair}}</p>
-        <p>Skin Color: {{skin}}</p>
-        <p>Height: {{height}}</p>
-        <p>Mass: {{mass}}</p>
+        <p>Director: {{director}}</p>
+        <p>Created: {{created}}</p>
+        <p>Episode: {{episode}}</p>
+        <p>Producer: {{producer}}}</p>
+        <p>{{openingInf}}</p>
 
         </div>
 
@@ -36,8 +33,8 @@
 
     <div class="films-con">
       <div class="extra-tab-links">
-      <p>Films </p>
-      <a [routerLink]="['../../' + film]" *ngFor="let film of filmsRoutes">{{film}}</a>
+      <p>Planets </p>
+      <a [routerLink]="['../../' + planet]" *ngFor="let planet of planetsRoutes">{{planet}}</a>
       </div>
     </div>
 
@@ -63,6 +60,3 @@
 
   </div>
 </div>
-
-
-

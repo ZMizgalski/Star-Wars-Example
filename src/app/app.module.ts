@@ -12,6 +12,9 @@ import { SpeciesComponent } from './content/species/species.component';
 import { PlanetsComponent } from './content/planets/planets.component';
 import { CharacterDataComponent } from './content/character-data/character-data.component';
 import { CharacterDataSpecComponent } from './content/character-data-spec/character-data-spec.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FilmsDataComponent } from './content/films-data/films-data.component';
+import { PlanetsDataComponent } from './content/planets-data/planets-data.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,13 @@ import { CharacterDataSpecComponent } from './content/character-data-spec/charac
     PlanetsComponent,
     CharacterDataComponent,
     CharacterDataSpecComponent,
+    FilmsDataComponent,
+    PlanetsDataComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

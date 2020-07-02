@@ -17,14 +17,15 @@
 
         <div class="char-desc-con">
 
-        <p>Birth Year: {{birth}}</p>
-        <p>Species: {{specInf}}</p>
-        <p>Home World: {{homeInf}}</p>
-        <p>Gender: {{gender}}</p>
-        <p>Hair Color: {{hair}}</p>
-        <p>Skin Color: {{skin}}</p>
-        <p>Height: {{height}}</p>
-        <p>Mass: {{mass}}</p>
+        <p>Name: {{name}}</p>
+        <p>Climate: {{climate}}</p>
+        <p>Diameter: {{diameter}}</p>
+        <p>Gravity: {{gravity}}}</p>
+        <p>Orb: {{orb}}}</p>
+        <p>Populatiomn: {{population}}}</p>
+        <p>Rotation period: {{rotation_period}}}</p>
+        <p>Surface water: {{surface_water}}}</p>
+        <p>Terrain: {{terrain}}</p>
 
         </div>
 
@@ -36,8 +37,8 @@
 
     <div class="films-con">
       <div class="extra-tab-links">
-      <p>Films </p>
-      <a [routerLink]="['../../' + film]" *ngFor="let film of filmsRoutes">{{film}}</a>
+      <p>Pepole </p>
+      <a style="margin-right: 20px;" [routerLink]="['../../character/' + person]" *ngFor="let person of pepoleRoutes">{{person}}</a>
       </div>
     </div>
 
@@ -63,6 +64,3 @@
 
   </div>
 </div>
-
-
-
