@@ -10,17 +10,21 @@ import { PlanetsDataComponent } from './content/planets-data/planets-data.compon
 import { CharacterDataComponent } from './content/character-data/character-data.component';
 import { CharacterDataSpecComponent } from './content/character-data-spec/character-data-spec.component';
 import { FilmsDataComponent } from './content/films-data/films-data.component';
-
-
+import { SpeciesDataComponent } from './content/species-data/species-data.component';
+import { StarShipsDataComponent } from './content/star-ships-data/star-ships-data.component';
+import { VehiclesDataComponent } from './content/vehicles-data/vehicles-data.component';
 const routes: Routes = [
   {path: '', component: CharactersComponent},
   {path: 'character', component: CharacterDataComponent},
   {path: 'character/:id', component: CharacterDataSpecComponent},
   {path: 'films', component: FilmsComponent},
   {path: 'films/:id', component: FilmsDataComponent},
-  {path: 'star-ships', component: StarShipsComponent},
+  {path: 'starships', component: StarShipsComponent},
+  {path: 'starships/:id', component: StarShipsDataComponent},
   {path: 'vehicles', component: VehiclesComponent},
+  {path: 'vehicles/:id', component: VehiclesDataComponent},
   {path: 'species', component: SpeciesComponent},
+  {path: 'species/:id', component: SpeciesDataComponent},
   {path: 'planets', component: PlanetsComponent},
   {path: 'planets/:id', component: PlanetsDataComponent},
 ];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { ActivatedRoute } from '@angular/router';
+import { Planets } from 'src/app/servieces/class/planets/planets';
 
 @Component({
   selector: 'app-planets-data',
@@ -10,32 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 export class PlanetsDataComponent implements OnInit {
 
   id: any;
-
-  // Main Inf
-  name: string;
-  climate: string;
-  species: any;
-  residents: any;
-  diameter: string;
-  gravity: string;
-  orb: string;
-  population: string;
-  rotation_period: string;
-  surface_water: string;
-  terrain: string;
-
-  // Linked Inf
-  specInf: string;
-  homeInf: string;
-
-  // Endpoint After
-  starS: any;
-  films: any;
-
+  planets!: Planets;
+  loaded = false;
   // clean arrays
-  pepoleRoutes = [];
-  shipsRoutes = [];
-  vehiclesRoutes = [];
+  pepoleRoutes: string[] = [];
+  shipsRoutes: string[] = [];
+  vehiclesRoutes: string[] = [];
 
   constructor(private route: ActivatedRoute, private end: EndpointService) { }
 
@@ -43,40 +24,27 @@ export class PlanetsDataComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     // console.log(this.id);
     this.end.getPlanetById(this.id).subscribe(data => {
-     //  console.log(data);
-      this.name = data.name;
-      this.climate = data.climate;
-      this.diameter = data.diameter;
-      this.gravity = data.gravity;
-      this.orb = data.orbital_period;
-      this.population = data.population;
-      this.rotation_period = data.rotation_period;
-      this.surface_water = data.surface_water;
-      this.terrain = data.terrain;
-      // console.log(this.terrain);
 
+      this.planets = data;
 
-      this.residents = data.residents;
-      this.films = data.films;
-
-
-      if (this.residents.length > 0) {
-        for (let i = 0; i < this.residents.length; i++) {
-          const path = this.residents[i];
+      if (this.planets.residents.length > 0) {
+        for (let i = 0; i < this.planets.residents.length; i++) {
+          const path = this.planets.residents[i];
         const result = path.split("/")
-        this.pepoleRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
+        this.pepoleRoutes.push(result[result.length - 2] + "/");
         }
        // console.log(this.filmsRoutes)
       }
 
-      if (this.films.length > 0) {
-        for (let i = 0; i < this.films.length; i++) {
-          const path = this.films[i];
+      if (this.planets.films.length > 0) {
+        for (let i = 0; i < this.planets.films.length; i++) {
+          const path = this.planets.films[i];
         const result = path.split("/")
         this.vehiclesRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
         }
         // console.log(this.vehiclesRoutes)
       }
+      this.loaded = true;
     })
 
   }

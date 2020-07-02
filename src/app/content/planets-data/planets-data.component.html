@@ -1,5 +1,5 @@
 <div style="min-height: calc(100vh - 100px); display: flex;flex-direction: column;justify-content: center;">
-  <div class="main-con">
+  <div class="main-con" *ngIf="loaded">
 
     <div class="description-con">
 
@@ -9,23 +9,23 @@
 
           <div class="img-char">
 
-            <p style="color: black;">{{name}}</p>
+            <p style="color: black;">{{planets.name}}</p>
 
           </div>
-          <p style="color: black;">{{name}}</p>
+          <p style="color: black;">{{planets.name}}</p>
         </div>
 
         <div class="char-desc-con">
 
-        <p>Name: {{name}}</p>
-        <p>Climate: {{climate}}</p>
-        <p>Diameter: {{diameter}}</p>
-        <p>Gravity: {{gravity}}}</p>
-        <p>Orb: {{orb}}}</p>
-        <p>Populatiomn: {{population}}}</p>
-        <p>Rotation period: {{rotation_period}}}</p>
-        <p>Surface water: {{surface_water}}}</p>
-        <p>Terrain: {{terrain}}</p>
+        <p>Name: {{planets.name}}</p>
+        <p>Climate: {{planets.climate}}</p>
+        <p>Diameter: {{planets.diameter}}</p>
+        <p>Gravity: {{planets.gravity}}}</p>
+        <p>Orb: {{planets.orbital_period}}}</p>
+        <p>Populatiomn: {{planets.population}}}</p>
+        <p>Rotation period: {{planets.rotation_period}}}</p>
+        <p>Surface water: {{planets.surface_water}}}</p>
+        <p>Terrain: {{planets.terrain}}</p>
 
         </div>
 

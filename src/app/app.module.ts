@@ -15,6 +15,9 @@ import { CharacterDataSpecComponent } from './content/character-data-spec/charac
 import { HttpClientModule } from '@angular/common/http';
 import { FilmsDataComponent } from './content/films-data/films-data.component';
 import { PlanetsDataComponent } from './content/planets-data/planets-data.component';
+import { SpeciesDataComponent } from './content/species-data/species-data.component';
+import { StarShipsDataComponent } from './content/star-ships-data/star-ships-data.component';
+import { VehiclesDataComponent } from './content/vehicles-data/vehicles-data.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { PlanetsDataComponent } from './content/planets-data/planets-data.compon
     CharacterDataSpecComponent,
     FilmsDataComponent,
     PlanetsDataComponent,
+    SpeciesDataComponent,
+    StarShipsDataComponent,
+    VehiclesDataComponent,
   ],
   imports: [
     BrowserModule,

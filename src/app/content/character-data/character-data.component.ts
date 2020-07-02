@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointService} from '../../servieces/endpoint.service';
+import { People } from 'src/app/servieces/class/pepole/people';
 
 
 @Component({
@@ -9,14 +10,14 @@ import { EndpointService} from '../../servieces/endpoint.service';
 })
 export class CharacterDataComponent implements OnInit {
 
-  items = [];
+  people!: People[];
+
   constructor(private end: EndpointService) { }
 
   ngOnInit(): void {
 
      this.end.getPepole().subscribe(data => {
-      this.items = data.results;
-      console.log(this.items)
+       this.people = data.results;
     })
   }
 

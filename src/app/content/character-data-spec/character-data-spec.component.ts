@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
+import { People } from 'src/app/servieces/class/pepole/people';
+import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-character-data-spec',
@@ -10,31 +12,16 @@ import { EndpointService } from 'src/app/servieces/endpoint.service';
 export class CharacterDataSpecComponent implements OnInit {
 
   id: any;
-
-  // Main Inf
-  name: string;
-  birth: string;
-  species: any;
-  home: any;
-  gender: string;
-  hair: string;
-  skin: string;
-  height: string;
-  mass: string;
-
+  people!: People;
   // Linked Inf
-  specInf: string;
-  homeInf: string;
-
-  // Endpoint After
-  films: any;
-  starS: any;
-  vehicles: any;
+  specInf: string[] = [];
+  homeInf?: string;
+  loaded = false;
 
   // clean arrays
-  filmsRoutes = [];
-  shipsRoutes = [];
-  vehiclesRoutes = [];
+  filmsRoutes: string[] = [];
+  shipsRoutes: string[] = [];
+  vehiclesRoutes: string[] = [];
 
   constructor(private route: ActivatedRoute, private end: EndpointService) { }
 
@@ -42,74 +29,64 @@ export class CharacterDataSpecComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     // console.log(this.id);
     this.end.getPersonById(this.id).subscribe(data => {
-       // console.log(data);
-      this.name = data.name;
-      this.birth = data.birth_year;
-      this.gender = data.gender;
-      this.hair = data.hair_color;
-      this.skin = data.skin_color;
-      this.height = data.height;
-      this.mass = data.mass;
-      this.home = data.homeworld;
-      this.species = data.species;
-      this.films = data.films;
-      this.starS = data.starships;
-      this.vehicles = data.vehicles;
 
-      // console.log(this.films);
-      // console.log(this.starS);
-      // console.log(this.species.match(/\d+/)[0]);
+      this.people = data;
 
-
-
-      if (this.films.length > 0) {
-        for (let i = 0; i < this.films.length; i++) {
-          const path = this.films[i];
+      if (this.people.films.length > 0) {
+        for (let i = 0; i < this.people.films.length; i++) {
+          const path = this.people.films[i];
         const result = path.split("/")
         this.filmsRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
         }
        // console.log(this.filmsRoutes)
       }
 
-      if (this.starS.length > 0) {
-        for (let i = 0; i < this.starS.length; i++) {
-          const path = this.starS[i];
+      if (this.people.starships.length > 0) {
+        for (let i = 0; i < this.people.starships.length; i++) {
+          const path = this.people.starships[i];
         const result = path.split("/")
         this.shipsRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
         }
        // console.log(this.shipsRoutes)
       }
 
-      if (this.vehicles.length > 0) {
-        for (let i = 0; i < this.vehicles.length; i++) {
-          const path = this.vehicles[i];
+      if (this.people.vehicles.length > 0) {
+        for (let i = 0; i < this.people.vehicles.length; i++) {
+          const path = this.people.vehicles[i];
         const result = path.split("/")
         this.vehiclesRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
         }
-        // console.log(this.vehiclesRoutes)
       }
 
 
 
-      if (this.home.length > 0) {
-        const result = this.home.split("/")
-        // console.log(result[result.length - 2]);
+      if (this.people.homeworld.length > 0) {
+        const result = this.people.homeworld.split("/")
         this.end.getPlanetById(result[result.length - 2]).subscribe(data => {
           this.homeInf = data.name;
-         // console.log(data);
         })
       }
 
-      if (this.species.length > 0) {
-        const result = this.home.split("/")
-        // console.log(result[result.length - 2]);
-      this.end.getSpeciesById(result[result.length - 2]).subscribe(data => {
-        this.specInf = data.name;
-       // console.log(data);
-      })
-    }
+      if (this.people.species.length > 0) {
+        this.people.parsedSpecies = [];
+        for(let i = 0; i < this.people.species.length; i++) {
+          console.log(this.people);
 
-      //console.log(data);
+
+          const result = this.people.species[i].split("/")
+          this.end.getSpeciesById(result[result.length - 2]).subscribe(data => {
+          //  console.log(data.name);
+          if (this.people.parsedSpecies) {
+            const asd = <string>this.people.species[i];
+            this.people.parsedSpecies.push({specification: data.name , url: asd });
+            console.log(this.people.parsedSpecies);
+
+          }
+        })
+        //console.log(this.specInf);
+        }
+    }
+      this.loaded = true;
     })
 
   }

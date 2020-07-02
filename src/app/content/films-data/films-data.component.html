@@ -1,5 +1,5 @@
 <div style="min-height: calc(100vh - 100px); display: flex;flex-direction: column;justify-content: center;">
-  <div class="main-con">
+  <div class="main-con" *ngIf="loaded">
 
     <div class="description-con">
 
@@ -9,19 +9,19 @@
 
           <div class="img-char">
 
-            <p style="color: black;">{{title}}</p>
+            <p style="color: black;">{{films.title}}</p>
 
           </div>
-          <p style="color: black;">{{title}}</p>
+          <p style="color: black;">{{films.title}}</p>
         </div>
 
         <div class="char-desc-con">
 
-        <p>Director: {{director}}</p>
-        <p>Created: {{created}}</p>
-        <p>Episode: {{episode}}</p>
-        <p>Producer: {{producer}}}</p>
-        <p>{{openingInf}}</p>
+        <p>Director: {{films.director}}</p>
+        <p>Created: {{films.created}}</p>
+        <p>Episode: {{films.episode_id}}</p>
+        <p>Producer: {{films.producer}}}</p>
+        <p>{{films.opening_crawl}}</p>
 
         </div>
 

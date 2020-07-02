@@ -1,5 +1,5 @@
 <div style="min-height: calc(100vh - 100px); display: flex;flex-direction: column;justify-content: center;">
-  <div class="main-con">
+  <div class="main-con"*ngIf="loaded">
 
     <div class="description-con">
 
@@ -9,22 +9,22 @@
 
           <div class="img-char">
 
-            <p style="color: black;">{{name}}</p>
+            <p style="color: black;">{{people.name}}</p>
 
           </div>
-          <p style="color: black;">{{name}}</p>
+          <p style="color: black;">{{people.name}}</p>
         </div>
 
         <div class="char-desc-con">
 
-        <p>Birth Year: {{birth}}</p>
-        <p>Species: {{specInf}}</p>
+        <p>Birth Year: {{people.birth_year}}</p>
+        <p>Species: {{people.parsedSpecies.specification}}</p>
         <p>Home World: {{homeInf}}</p>
-        <p>Gender: {{gender}}</p>
-        <p>Hair Color: {{hair}}</p>
-        <p>Skin Color: {{skin}}</p>
-        <p>Height: {{height}}</p>
-        <p>Mass: {{mass}}</p>
+        <p>Gender: {{people.gender}}</p>
+        <p>Hair Color: {{people.hair_color}}</p>
+        <p>Skin Color: {{people.skin_color}}</p>
+        <p>Height: {{people.height}}</p>
+        <p>Mass: {{people.mass}}</p>
 
         </div>
 
