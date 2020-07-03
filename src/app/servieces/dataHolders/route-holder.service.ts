@@ -1,52 +1,16 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouteHolderService {
 
+  private size = new BehaviorSubject<number>(20);
+  currentsize = this.size.asObservable();
   constructor() { }
 
-  getMenu(): Array<any> {
-    const menu = [
-      { name: '',
-       path: './',
-        children: [ ]
-       },
-      {
-        name: 'character',
-        path: './character',
-        children: [
-
-        ]
-      },
-      {
-        name: 'films',
-        path: './films',
-        children: [ ]
-      },
-      {
-        name: 'starships',
-        path: './starships',
-        children: [ ]
-      },
-      {
-        name: 'vehicles',
-        path: './vehicles',
-        children: [ ]
-      },
-      {
-        name: 'species',
-        path: './species',
-        children: [ ]
-      },
-      {
-        name: 'planets',
-        path: './planets',
-        children: [ ]
-      },
-
-      ]
-    return menu;
+  changeVal(val: number) {
+    this.size.next(val)
   }
 }

@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.service';
 
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.css']
 })
-export class CharactersComponent implements OnInit {
+export class CharactersComponent implements OnInit, DoCheck {
 
+  val?: number;
 items = [
   {CharName: 'Characters', imageName: 'character image', router: 'character'},
   {CharName: 'Films', imageName: 'film image', router: 'films'},
@@ -17,10 +19,16 @@ items = [
   {CharName: 'Planets', imageName: 'planet image', router: 'planets'},
 ];
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private data: RouteHolderService) {
    }
+  ngDoCheck(): void {
+    this.data.currentsize.subscribe(val => this.val = val)
+    console.log(this.val)
+  }
 
   ngOnInit(): void {
+    this.data.currentsize.subscribe(val => this.val = val)
+    console.log(this.val)
   }
 
 }

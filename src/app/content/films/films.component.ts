@@ -4,6 +4,7 @@ import { Films } from 'src/app/servieces/class/films/films';
 import { Router } from '@angular/router';
 import { Page } from 'src/app/servieces/class/page/page';
 import { Observable } from 'rxjs';
+import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.service';
 
 @Component({
   selector: 'app-films',
@@ -12,20 +13,19 @@ import { Observable } from 'rxjs';
 })
 export class FilmsComponent implements OnInit, DoCheck {
 
+  val?: number;
   page!: Page;
   films: Films[] = [];
   noNextPages = false;
   loadNext = false;
-  constructor(private end: EndpointService, private route: Router) {
-    console.log(this.route.url)
+  constructor(private end: EndpointService, private route: Router, private data: RouteHolderService) {
    }
 
    i = 1;
    ngOnInit(): void {
       this.getData(this.i);
+      this.data.currentsize.subscribe(val => this.val = val)
    }
-
-
 
    getData(id: number) {
      this.end.geteFilmsPage(id).subscribe(data => {
@@ -44,7 +44,6 @@ export class FilmsComponent implements OnInit, DoCheck {
    }
 
    ngDoCheck(): void {
-
   }
 
 }

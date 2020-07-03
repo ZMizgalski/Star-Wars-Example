@@ -5,6 +5,7 @@
     <p class="textEX" style="color: white;">A visual guide</p>
   </div>
 
+
   <div class="navigation-con">
     <ol class="breadcrumb">
       <li *ngFor="let breadcrumb of bredCrumbs">
@@ -13,7 +14,12 @@
         </span>
       </li>
     </ol>
+
   </div>
+  <div style="display:flex;flex-direction:column; align-items:center; margin-top: 30px;">
+    <app-slider></app-slider>
+  </div>
+
 
   <div class="content">
     <router-outlet></router-outlet>

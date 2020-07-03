@@ -20,7 +20,6 @@ export class PlanetsDataComponent implements OnInit {
   vehiclesRoutes: string[] = [];
 
   constructor(private route: ActivatedRoute, private end: EndpointService, private router: Router, private routeSer: RouteHolderService) {
-    //console.log(this.router.url)
    }
 
   ngOnInit(): void {

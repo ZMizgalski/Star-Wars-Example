@@ -18,6 +18,9 @@ import { PlanetsDataComponent } from './content/planets-data/planets-data.compon
 import { SpeciesDataComponent } from './content/species-data/species-data.component';
 import { StarShipsDataComponent } from './content/star-ships-data/star-ships-data.component';
 import { VehiclesDataComponent } from './content/vehicles-data/vehicles-data.component';
+import { SliderComponent } from './content/slider/slider.component';
+import { FormsModule } from '@angular/forms';
+import {SliderModule} from 'primeng/slider';
 
 @NgModule({
   declarations: [
@@ -36,11 +39,14 @@ import { VehiclesDataComponent } from './content/vehicles-data/vehicles-data.com
     SpeciesDataComponent,
     StarShipsDataComponent,
     VehiclesDataComponent,
+    SliderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
