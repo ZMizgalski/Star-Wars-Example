@@ -48,6 +48,40 @@ export class EndpointService {
     return this.http.get<Planets>(this.domain + 'planets/');
   }
 
+
+
+
+  getPepolePage(id: number): Observable<Page> {
+    return this.http.get<Page>(this.domain + 'pepole/?page=' + id)
+  }
+
+  getPlanetsPage(id: number): Observable<Page> {
+    return this.http.get<Page>(this.domain + 'planets/?page=' + id)
+  }
+
+  getSpeciesPage(id: number): Observable<Page> {
+    return this.http.get<Page>(this.domain + 'species/?page=' + id)
+  }
+
+  getStarSPage(id: number): Observable<Page> {
+    return this.http.get<Page>(this.domain + 'starships/?page=' + id)
+  }
+
+  getVehiclePage(id: number): Observable<Page> {
+    return this.http.get<Page>(this.domain + 'vehicles/?page=' + id)
+  }
+
+  geteFilmsPage(id: number): Observable<Page> {
+    return this.http.get<Page>(this.domain + 'films/?page=' + id)
+  }
+
+
+
+
+
+
+
+
   getPersonById(id:  any): Observable<People> {
     return this.http.get<People>(this.domain + 'people/' + id + '/');
   }

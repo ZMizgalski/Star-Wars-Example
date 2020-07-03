@@ -3,6 +3,7 @@ import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Vehicle } from 'src/app/servieces/class/vehicles/vehicle';
 import { Router } from '@angular/router';
 import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.service';
+import { Page } from 'src/app/servieces/class/page/page';
 
 @Component({
   selector: 'app-vehicles',
@@ -11,18 +12,26 @@ import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.s
 })
 export class VehiclesComponent implements OnInit {
 
-
-  vehicles!: Vehicle[];
+  noNextPages = false;
+  page!: Page;
+  vehicles: Vehicle[] = [];
   filmsRoutes: any;
 
   constructor(private end: EndpointService, private route: Router, private routeSer: RouteHolderService) {
     //console.log(this.router.url)
    }
 
-  ngOnInit(): void {
 
-     this.end.getVehicles().subscribe(data => {
-      this.vehicles = data.results;
+
+   i = 1;
+   ngOnInit(): void {
+      this.getData(this.i);
+   }
+
+   getData(id: number) {
+    this.end.getVehiclePage(id).subscribe(data => {
+      this.page = data;
+      this.vehicles = this.vehicles.concat(this.page.results);
 
       for (let i = 0; i < this.vehicles.length; i++) {
       const path = this.vehicles[i];
@@ -30,7 +39,13 @@ export class VehiclesComponent implements OnInit {
       this.vehicles[i].id = result[result.length - 2] + "/";
       }
 
+      if (this.page.next === null) {
+        this.noNextPages = true
+      } else {
+       this.noNextPages = false;
+      }
+
     })
-  }
+   }
 
 }

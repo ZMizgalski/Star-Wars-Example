@@ -12,18 +12,30 @@ import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.s
 })
 export class SpeciesComponent implements OnInit {
 
-
-  species!: Species;
+  noNextPages = false;
+  page!: Page;
+  species: Species[] = [];
   constructor(private end: EndpointService, private router: Router, private routeSer: RouteHolderService) {
     //console.log(this.router.url)
   }
 
-  ngOnInit(): void {
 
-     this.end.getSpecies().subscribe(data => {
-       //console.log(data);
-      this.species = <Species>data.results;
-    })
+  i = 1;
+  ngOnInit(): void {
+     this.getData(this.i);
+  }
+
+  getData(id: number) {
+    this.end.getSpeciesPage(id).subscribe(data => {
+      // console.log(data)
+      this.page = data;
+      this.species = this.species.concat(this.page.results);
+      if (this.page.next === null) {
+        this.noNextPages = true
+      } else {
+       this.noNextPages = false;
+      }
+   })
   }
 
 }

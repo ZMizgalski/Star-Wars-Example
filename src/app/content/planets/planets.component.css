@@ -30,3 +30,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+.load-con {
+    display: flex;
+    justify-content: center;
+}

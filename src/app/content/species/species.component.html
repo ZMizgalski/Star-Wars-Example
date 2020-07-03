@@ -3,7 +3,8 @@ min-height: calc(100vh - 100px);
 height: 100%;
 display: flex;
 align-items: center;
-justify-content: center;">
+justify-content: center;
+flex-direction: column;">
 
   <div class="container-router">
   <div *ngFor="let item of species; let i = index" style="margin: 10px;">
@@ -20,4 +21,8 @@ justify-content: center;">
   </div>
   </div>
 </div>
+<div class="load-con" *ngIf="!noNextPages">
+  <button style="height: 50px; width: 70px;" (click)="getData(this.i + 1)">Load More</button>
+</div>
+
 </div>
