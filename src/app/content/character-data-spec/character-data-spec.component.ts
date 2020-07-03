@@ -12,6 +12,7 @@ import { templateJitUrl } from '@angular/compiler';
 export class CharacterDataSpecComponent implements OnInit {
 
   id: any;
+  spec?: string;
   people!: People;
   // Linked Inf
   specInf: string[] = [];
@@ -23,7 +24,8 @@ export class CharacterDataSpecComponent implements OnInit {
   shipsRoutes: string[] = [];
   vehiclesRoutes: string[] = [];
 
-  constructor(private route: ActivatedRoute, private end: EndpointService) { }
+  constructor(private route: ActivatedRoute, private end: EndpointService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -70,7 +72,7 @@ export class CharacterDataSpecComponent implements OnInit {
       if (this.people.species.length > 0) {
         this.people.parsedSpecies = [];
         for(let i = 0; i < this.people.species.length; i++) {
-          console.log(this.people);
+          // console.log(this.people);
 
 
           const result = this.people.species[i].split("/")
@@ -79,7 +81,12 @@ export class CharacterDataSpecComponent implements OnInit {
           if (this.people.parsedSpecies) {
             const asd = <string>this.people.species[i];
             this.people.parsedSpecies.push({specification: data.name , url: asd });
-            console.log(this.people.parsedSpecies);
+
+
+            this.spec = this.people.parsedSpecies.map(({specification}) => specification)[0]
+            // let url = this.people.parsedSpecies.map(({url}) => url)
+             // console.log(url)
+            console.log(this.spec);
 
           }
         })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Films } from 'src/app/servieces/class/films/films';
 
@@ -23,7 +23,9 @@ export class FilmsDataComponent implements OnInit {
   shipsRoutes: string[] = [];
   vehiclesRoutes: string[] = [];
 
-  constructor(private route: ActivatedRoute, private end: EndpointService) { }
+  constructor(private route: ActivatedRoute, private end: EndpointService, private router: Router) {
+    console.log(this.router.url)
+   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');

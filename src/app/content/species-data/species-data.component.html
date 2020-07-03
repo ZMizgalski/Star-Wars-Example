@@ -39,14 +39,14 @@
     <div class="films-con">
       <div class="extra-tab-links">
       <p>Films </p>
-      <a style="margin-right: 20px;" [routerLink]="['../../' + film]" *ngFor="let film of filmsRoutes">{{film}}</a>
+      <a style="align-self: center;"  [routerLink]="['../../' + film]" *ngFor="let film of filmsRoutes">{{film}}</a>
       </div>
     </div>
 
     <div class="starS-con">
       <div class="extra-tab-links">
       <p>Pepole </p>
-        <a [routerLink]="['../../character/' + person]" *ngFor="let person of pepoleRoutes">{{person}}</a>
+        <a style="align-self: center;" [routerLink]="['../../character/' + person]" *ngFor="let person of pepoleRoutes">{{person}}</a>
       </div>
     </div>
 

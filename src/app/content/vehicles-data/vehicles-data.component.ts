@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Vehicle } from 'src/app/servieces/class/vehicles/vehicle';
+import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.service';
 
 @Component({
   selector: 'app-vehicles-data',
@@ -18,7 +19,10 @@ export class VehiclesDataComponent implements OnInit {
   pepoleRoutes: string[] = [];
   filmsRoutes: string[] = [];
 
-  constructor(private route: ActivatedRoute, private end: EndpointService) { }
+  constructor(private route: ActivatedRoute, private end: EndpointService, private router: Router, private routeSer: RouteHolderService) {
+    //console.log(this.router.url)
+
+   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');

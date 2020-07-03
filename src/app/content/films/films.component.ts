@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Films } from 'src/app/servieces/class/films/films';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-films',
@@ -10,7 +11,9 @@ import { Films } from 'src/app/servieces/class/films/films';
 export class FilmsComponent implements OnInit {
 
   films!: Films[];
-  constructor(private end: EndpointService) { }
+  constructor(private end: EndpointService, private route: Router) {
+    console.log(this.route.url)
+   }
 
   ngOnInit(): void {
 

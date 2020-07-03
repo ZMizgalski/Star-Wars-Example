@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Planets } from 'src/app/servieces/class/planets/planets';
+import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.service';
 
 @Component({
   selector: 'app-planets-data',
@@ -18,7 +19,9 @@ export class PlanetsDataComponent implements OnInit {
   shipsRoutes: string[] = [];
   vehiclesRoutes: string[] = [];
 
-  constructor(private route: ActivatedRoute, private end: EndpointService) { }
+  constructor(private route: ActivatedRoute, private end: EndpointService, private router: Router, private routeSer: RouteHolderService) {
+    //console.log(this.router.url)
+   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');

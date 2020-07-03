@@ -1,4 +1,5 @@
 export interface Planets {
+  results: Planets;
   climate: string;
   created: string;
   diameter: string;

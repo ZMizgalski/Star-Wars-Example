@@ -1,4 +1,5 @@
 export interface Species {
+  results: Species;
   average_height: string;
   average_lifespan: string;
   classification: string;

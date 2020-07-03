@@ -18,7 +18,7 @@
         <div class="char-desc-con">
 
         <p>Birth Year: {{people.birth_year}}</p>
-        <p>Species: {{people.parsedSpecies.specification}}</p>
+        <p>Species: {{spec}}</p>
         <p>Home World: {{homeInf}}</p>
         <p>Gender: {{people.gender}}</p>
         <p>Hair Color: {{people.hair_color}}</p>
@@ -37,14 +37,14 @@
     <div class="films-con">
       <div class="extra-tab-links">
       <p>Films </p>
-      <a [routerLink]="['../../' + film]" *ngFor="let film of filmsRoutes">{{film}}</a>
+      <a style="align-self: center;" [routerLink]="['../../' + film]" *ngFor="let film of filmsRoutes">{{film}}</a>
       </div>
     </div>
 
     <div class="starS-con">
       <div class="extra-tab-links">
       <p>Star Ships </p>
-        <a [routerLink]="['../../' + ship]" *ngFor="let ship of shipsRoutes">{{ship}}</a>
+        <a style="align-self: center;" [routerLink]="['../../' + ship]" *ngFor="let ship of shipsRoutes">{{ship}}</a>
       </div>
     </div>
 
@@ -53,7 +53,7 @@
       <div class="extra-tab-links">
         <p>Vehicles </p>
         <div class="link-con" *ngFor="let veh of vehiclesRoutes">
-          <a [routerLink]="['../../' + veh]">{{veh}}</a>
+          <a style="align-self: center;" [routerLink]="['../../' + veh]">{{veh}}</a>
         </div>
       </div>
 

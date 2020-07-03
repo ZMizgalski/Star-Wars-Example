@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { StarShip } from 'src/app/servieces/class/star-ship/star-ship';
+import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.service';
 
 @Component({
   selector: 'app-star-ships-data',
@@ -18,7 +19,8 @@ export class StarShipsDataComponent implements OnInit {
   pepoleRoutes: string[] = [];
   filmsRoutes: string[] = [];
 
-  constructor(private route: ActivatedRoute, private end: EndpointService) { }
+  constructor(private route: ActivatedRoute, private end: EndpointService, private router: Router, private routeSer: RouteHolderService) {
+   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');

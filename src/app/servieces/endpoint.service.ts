@@ -8,6 +8,7 @@ import { Species } from './class/species/species';
 import { Planets } from './class/planets/planets';
 import { Films } from './class/films/films';
 import { VehiclesComponent } from '../content/vehicles/vehicles.component';
+import { Page } from './class/page/page';
 
 @Injectable({
   providedIn: 'root'

@@ -5,6 +5,16 @@
     <p class="textEX" style="color: white;">A visual guide</p>
   </div>
 
+  <div class="navigation-con">
+    <ol class="breadcrumb">
+      <li *ngFor="let breadcrumb of bredCrumbs">
+        <span style="color: black;" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+          {{ breadcrumb.label }}
+        </span>
+      </li>
+    </ol>
+  </div>
+
   <div class="content">
     <router-outlet></router-outlet>
   </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-characters',
@@ -16,7 +17,8 @@ items = [
   {CharName: 'Planets', imageName: 'planet image', router: 'planets'},
 ];
 
-  constructor() { }
+  constructor(private route: Router) {
+   }
 
   ngOnInit(): void {
   }

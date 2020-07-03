@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Vehicle } from 'src/app/servieces/class/vehicles/vehicle';
+import { Router } from '@angular/router';
+import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.service';
 
 @Component({
   selector: 'app-vehicles',
@@ -13,7 +15,9 @@ export class VehiclesComponent implements OnInit {
   vehicles!: Vehicle[];
   filmsRoutes: any;
 
-  constructor(private end: EndpointService) { }
+  constructor(private end: EndpointService, private route: Router, private routeSer: RouteHolderService) {
+    //console.log(this.router.url)
+   }
 
   ngOnInit(): void {
 
