@@ -7,10 +7,9 @@ import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.s
 @Component({
   selector: 'app-planets-data',
   templateUrl: './planets-data.component.html',
-  styleUrls: ['./planets-data.component.css']
+  styleUrls: ['./planets-data.component.css'],
 })
 export class PlanetsDataComponent implements OnInit {
-
   id: any;
   planets!: Planets;
   loaded = false;
@@ -19,36 +18,39 @@ export class PlanetsDataComponent implements OnInit {
   shipsRoutes: string[] = [];
   vehiclesRoutes: string[] = [];
 
-  constructor(private route: ActivatedRoute, private end: EndpointService, private router: Router, private routeSer: RouteHolderService) {
-   }
+  constructor(
+    private route: ActivatedRoute,
+    private end: EndpointService,
+    private router: Router,
+    private routeSer: RouteHolderService
+  ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     // console.log(this.id);
     this.end.getPlanetById(this.id).subscribe(data => {
-
       this.planets = data;
 
       if (this.planets.residents.length > 0) {
         for (let i = 0; i < this.planets.residents.length; i++) {
           const path = this.planets.residents[i];
-        const result = path.split("/")
-        this.pepoleRoutes.push(result[result.length - 2] + "/");
+          const result = path.split('/');
+          this.pepoleRoutes.push(result[result.length - 2] + '/');
         }
-       // console.log(this.filmsRoutes)
+        // console.log(this.filmsRoutes)
       }
 
       if (this.planets.films.length > 0) {
         for (let i = 0; i < this.planets.films.length; i++) {
           const path = this.planets.films[i];
-        const result = path.split("/")
-        this.vehiclesRoutes.push(result[result.length - 3] + "/" + result[result.length - 2] + "/");
+          const result = path.split('/');
+          this.vehiclesRoutes.push(
+            result[result.length - 3] + '/' + result[result.length - 2] + '/'
+          );
         }
         // console.log(this.vehiclesRoutes)
       }
       this.loaded = true;
-    })
-
+    });
   }
-
 }

@@ -1,66 +1,68 @@
-<div style="min-height: calc(100vh - 100px); display: flex;flex-direction: column;justify-content: center;">
+<div
+  style="
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  "
+>
   <div class="main-con" *ngIf="loaded">
-
     <div class="description-con">
-
       <div class="desc-con">
-
         <div class="img-char-con">
-
           <div class="img-char">
-
             <p style="color: black;">{{planets.name}}</p>
-
           </div>
           <p style="color: black;">{{planets.name}}</p>
         </div>
 
         <div class="char-desc-con">
-
-        <p>Name: {{planets.name}}</p>
-        <p>Climate: {{planets.climate}}</p>
-        <p>Diameter: {{planets.diameter}}</p>
-        <p>Gravity: {{planets.gravity}}}</p>
-        <p>Orb: {{planets.orbital_period}}}</p>
-        <p>Populatiomn: {{planets.population}}}</p>
-        <p>Rotation period: {{planets.rotation_period}}}</p>
-        <p>Surface water: {{planets.surface_water}}}</p>
-        <p>Terrain: {{planets.terrain}}</p>
-
+          <p>Name: {{planets.name}}</p>
+          <p>Climate: {{planets.climate}}</p>
+          <p>Diameter: {{planets.diameter}}</p>
+          <p>Gravity: {{planets.gravity}}}</p>
+          <p>Orb: {{planets.orbital_period}}}</p>
+          <p>Populatiomn: {{planets.population}}}</p>
+          <p>Rotation period: {{planets.rotation_period}}}</p>
+          <p>Surface water: {{planets.surface_water}}}</p>
+          <p>Terrain: {{planets.terrain}}</p>
         </div>
-
       </div>
-
     </div>
 
     <div class="con-tiles">
-
-    <div class="films-con">
-      <div class="extra-tab-links">
-      <p>Pepole </p>
-      <a style="align-self: center;" [routerLink]="['../../character/' + person]" *ngFor="let person of pepoleRoutes">{{person}}</a>
-      </div>
-    </div>
-
-    <div class="starS-con">
-      <div class="extra-tab-links">
-      <p>Star Ships </p>
-        <a style="align-self: center;" [routerLink]="['../../' + ship]" *ngFor="let ship of shipsRoutes">{{ship}}</a>
-      </div>
-    </div>
-
-    <div class="vehicles-con">
-
-      <div class="extra-tab-links">
-        <p>Vehicles </p>
-        <div class="link-con" *ngFor="let veh of vehiclesRoutes">
-          <a style="align-self: center;" [routerLink]="['../../' + veh]">{{veh}}</a>
+      <div class="films-con">
+        <div class="extra-tab-links">
+          <p>Pepole</p>
+          <a
+            style="align-self: center;"
+            [routerLink]="['../../character/' + person]"
+            *ngFor="let person of pepoleRoutes"
+            >{{person}}</a
+          >
         </div>
       </div>
 
+      <div class="starS-con">
+        <div class="extra-tab-links">
+          <p>Star Ships</p>
+          <a
+            style="align-self: center;"
+            [routerLink]="['../../' + ship]"
+            *ngFor="let ship of shipsRoutes"
+            >{{ship}}</a
+          >
+        </div>
+      </div>
+
+      <div class="vehicles-con">
+        <div class="extra-tab-links">
+          <p>Vehicles</p>
+          <div class="link-con" *ngFor="let veh of vehiclesRoutes">
+            <a style="align-self: center;" [routerLink]="['../../' + veh]">{{veh}}</a>
+          </div>
+        </div>
+      </div>
     </div>
-
-  </div>
-
   </div>
 </div>

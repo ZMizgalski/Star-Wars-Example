@@ -1,62 +1,64 @@
-<div style="min-height: calc(100vh - 100px); display: flex;flex-direction: column;justify-content: center;">
+<div
+  style="
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  "
+>
   <div class="main-con" *ngIf="loaded">
-
     <div class="description-con">
-
       <div class="desc-con">
-
         <div class="img-char-con">
-
           <div class="img-char">
-
             <p style="color: black;">{{films.title}}</p>
-
           </div>
           <p style="color: black;">{{films.title}}</p>
         </div>
 
         <div class="char-desc-con">
-
-        <p>Director: {{films.director}}</p>
-        <p>Created: {{films.created}}</p>
-        <p>Episode: {{films.episode_id}}</p>
-        <p>Producer: {{films.producer}}}</p>
-        <p>{{films.opening_crawl}}</p>
-
+          <p>Director: {{films.director}}</p>
+          <p>Created: {{films.created}}</p>
+          <p>Episode: {{films.episode_id}}</p>
+          <p>Producer: {{films.producer}}}</p>
+          <p>{{films.opening_crawl}}</p>
         </div>
-
       </div>
-
     </div>
 
     <div class="con-tiles">
-
-    <div class="films-con">
-      <div class="extra-tab-links">
-      <p>Planets </p>
-      <a style="align-self: center;" [routerLink]="['../../' + planet]" *ngFor="let planet of planetsRoutes">{{planet}}</a>
-      </div>
-    </div>
-
-    <div class="starS-con">
-      <div class="extra-tab-links">
-      <p>Star Ships </p>
-        <a style="align-self: center;" [routerLink]="['../../' + ship]" *ngFor="let ship of shipsRoutes">{{ship}}</a>
-      </div>
-    </div>
-
-    <div class="vehicles-con">
-
-      <div class="extra-tab-links">
-        <p>Vehicles </p>
-        <div class="link-con" *ngFor="let veh of vehiclesRoutes">
-          <a style="align-self: center;" [routerLink]="['../../' + veh]">{{veh}}</a>
+      <div class="films-con">
+        <div class="extra-tab-links">
+          <p>Planets</p>
+          <a
+            style="align-self: center;"
+            [routerLink]="['../../' + planet]"
+            *ngFor="let planet of planetsRoutes"
+            >{{planet}}</a
+          >
         </div>
       </div>
 
+      <div class="starS-con">
+        <div class="extra-tab-links">
+          <p>Star Ships</p>
+          <a
+            style="align-self: center;"
+            [routerLink]="['../../' + ship]"
+            *ngFor="let ship of shipsRoutes"
+            >{{ship}}</a
+          >
+        </div>
+      </div>
+
+      <div class="vehicles-con">
+        <div class="extra-tab-links">
+          <p>Vehicles</p>
+          <div class="link-con" *ngFor="let veh of vehiclesRoutes">
+            <a style="align-self: center;" [routerLink]="['../../' + veh]">{{veh}}</a>
+          </div>
+        </div>
+      </div>
     </div>
-
-  </div>
-
   </div>
 </div>

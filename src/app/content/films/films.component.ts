@@ -9,22 +9,23 @@ import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.s
 @Component({
   selector: 'app-films',
   templateUrl: './films.component.html',
-  styleUrls: ['./films.component.css']
+  styleUrls: ['./films.component.css'],
 })
 export class FilmsComponent implements OnInit {
-
   val?: number;
   page!: Page;
   films: Films[] = [];
   noNextPages = false;
   loadNext = false;
-  constructor(private end: EndpointService, private route: Router, private data: RouteHolderService) {
-   }
-   @HostListener("window:scroll", [])
-   onScroll(): void {
-     if (this.bottomReached()) {
-       this.end.geteFilmsPage(this.i).subscribe(data => {
-
+  constructor(
+    private end: EndpointService,
+    private route: Router,
+    private data: RouteHolderService
+  ) {}
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if (this.bottomReached()) {
+      this.end.geteFilmsPage(this.i).subscribe(data => {
         this.page = data;
 
         if (!this.page.next) {
@@ -32,47 +33,47 @@ export class FilmsComponent implements OnInit {
         }
         this.films = this.films.concat(this.page.results);
 
-        for (let i = 0; i < this.films.length; i++) {
-        const path = this.films[i];
-        const result: string[] = path.url.split("/")
-        this.films[i].id = result[result.length - 2] + "/";
-        }
-         const result = this.page.next.split("=")
-         // console.log(result[result.length - 1])
-         this.i = parseInt(result[result.length - 1])
-      })
-     }
-   }
+        this.films = this.films.map(data => {
+          const result: string[] = data.url.split('/');
+          data.id = result[result.length - 2] + '/';
+          return data;
+        });
+        const result = this.page.next.split('=');
+        // console.log(result[result.length - 1])
+        this.i = parseInt(result[result.length - 1]);
+      });
+    }
+  }
 
-   bottomReached(): boolean {
-     return (window.innerHeight + window.scrollY + window.outerHeight) >= document.body.offsetHeight;
-   }
+  bottomReached(): boolean {
+    return window.innerHeight + window.scrollY + window.outerHeight >= document.body.offsetHeight;
+  }
 
-   i = 1;
-   ngOnInit(): void {
-      this.getData(this.i);
-   }
+  i = 1;
+  ngOnInit(): void {
+    this.getData(this.i);
+  }
 
-   getData(id: number) {
+  getData(id: number) {
     this.end.geteFilmsPage(id).subscribe(data => {
       this.page = data;
       this.films = this.films.concat(this.page.results);
 
-      for (let i = 0; i < this.films.length; i++) {
-      const path = this.films[i];
-      const result: string[] = path.url.split("/")
-      this.films[i].id = result[result.length - 2] + "/";
-      }
+      this.films = this.films.map(data => {
+        const result: string[] = data.url.split('/');
+        data.id = result[result.length - 2] + '/';
+        return data;
+      });
 
-       if (!this.page.next) {
+      if (!this.page.next) {
         return;
       }
 
-       const result = this.page.next.split("=")
-       // console.log(result[result.length - 1])
-       this.i = parseInt(result[result.length - 1])
+      const result = this.page.next.split('=');
+      // console.log(result[result.length - 1])
+      this.i = parseInt(result[result.length - 1]);
 
-       // console.log(this.starShip);
-    })
-   }
+      // console.log(this.starShip);
+    });
+  }
 }

@@ -1,32 +1,28 @@
-<div style="
-min-height: calc(100vh - 100px);
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;">
-
+<div
+  style="
+    min-height: calc(100vh - 100px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  "
+>
   <div class="container-router">
+    <div *ngFor="let item of planets; let i = index" style="margin: 10px;">
+      <div>
+        <div class="main-con">
+          <div class="char-img">
+            <p style="align-self: center;">{{item.name}}</p>
+          </div>
+        </div>
 
-  <div *ngFor="let item of planets; let i = index" style="margin: 10px;">
-
-  <div>
-    <div class="main-con">
-      <div class="char-img">
-        <p style="align-self: center;">{{item.name}}</p>
+        <div class="name-title">
+          <a style="text-decoration: none; color: white; height: 30px;" [routerLink]="item.id"
+            >{{item.name}}</a
+          >
+        </div>
       </div>
     </div>
-
-    <div class="name-title">
-      <a style="text-decoration: none; color: white; height: 30px;" [routerLink]="item.id" >{{item.name}}</a>
-    </div>
-
   </div>
-
-  </div>
-
-</div>
-
-
-
 </div>

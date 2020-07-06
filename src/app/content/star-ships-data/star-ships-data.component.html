@@ -1,48 +1,53 @@
-<div style="min-height: calc(100vh - 100px); display: flex;flex-direction: column;justify-content: center;">
+<div
+  style="
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  "
+>
   <div class="main-con" *ngIf="loaded">
-
     <div class="description-con">
-
       <div class="desc-con">
-
         <div class="img-char-con">
-
           <div class="img-char">
-
             <p style="color: black;">{{ship.name}}</p>
-
           </div>
           <p style="color: black;">{{ship.name}}</p>
         </div>
 
         <div class="char-desc-con">
-
-        <p>Name: {{ship.name}}</p>
-        <p>Avarage Height: {{ship.name}}</p>
-        <p>Avarege Lifespan: {{ship.model}}</p>
+          <p>Name: {{ship.name}}</p>
+          <p>Avarage Height: {{ship.name}}</p>
+          <p>Avarege Lifespan: {{ship.model}}</p>
         </div>
-
       </div>
-
     </div>
 
     <div class="con-tiles">
+      <div class="films-con">
+        <div class="extra-tab-links">
+          <p>Films</p>
+          <a
+            style="align-self: center;"
+            [routerLink]="['../../' + film]"
+            *ngFor="let film of filmsRoutes"
+            >{{film}}</a
+          >
+        </div>
+      </div>
 
-    <div class="films-con">
-      <div class="extra-tab-links">
-      <p>Films </p>
-      <a style="align-self: center;" [routerLink]="['../../' + film]" *ngFor="let film of filmsRoutes">{{film}}</a>
+      <div class="starS-con">
+        <div class="extra-tab-links">
+          <p>Pepole</p>
+          <a
+            style="align-self: center;"
+            [routerLink]="['../../character/' + person]"
+            *ngFor="let person of pepoleRoutes"
+            >{{person}}</a
+          >
+        </div>
       </div>
     </div>
-
-    <div class="starS-con">
-      <div class="extra-tab-links">
-      <p>Pepole </p>
-        <a  style="align-self: center;" [routerLink]="['../../character/' + person]" *ngFor="let person of pepoleRoutes">{{person}}</a>
-      </div>
-    </div>
-
-  </div>
-
   </div>
 </div>

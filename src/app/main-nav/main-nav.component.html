@@ -1,29 +1,28 @@
 <div class="container">
-
   <div class="head-title">
-    <p  class="textEX" style="font-size: 30px; color: yellow;margin-right: 20px;">Star Wars</p>
+    <p class="textEX" style="font-size: 30px; color: yellow; margin-right: 20px;">Star Wars</p>
     <p class="textEX" style="color: white;">A visual guide</p>
   </div>
-
 
   <div class="navigation-con">
     <ol class="breadcrumb">
       <li *ngFor="let breadcrumb of bredCrumbs">
-        <span style="color: black;" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+        <span
+          style="color: black;"
+          [routerLink]="breadcrumb.url"
+          routerLinkActive="router-link-active"
+        >
           {{ breadcrumb.label }}
         </span>
       </li>
     </ol>
-
   </div>
-  <div style="display:flex;flex-direction:column; align-items:center; margin-top: 30px;">
-    <app-slider [(ngModel)]="value" ></app-slider>
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 30px;">
+    <app-slider [(ngModel)]="value"></app-slider>
     <p style="color: white;">{{value}}</p>
   </div>
-
 
   <div class="content">
     <router-outlet></router-outlet>
   </div>
-
 </div>

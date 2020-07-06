@@ -11,16 +11,15 @@ import { VehiclesComponent } from '../content/vehicles/vehicles.component';
 import { Page } from './class/page/page';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EndpointService {
-
   domain: string;
 
   constructor(private http: HttpClient) {
-    this.domain = "https://swapi.dev/api/"
-   }
-   getFilmsById(id:  any): Observable<any> {
+    this.domain = 'https://swapi.dev/api/';
+  }
+  getFilmsById(id: any): Observable<any> {
     return this.http.get(this.domain + 'films/' + id + '/');
   }
 
@@ -48,45 +47,35 @@ export class EndpointService {
     return this.http.get<Planets>(this.domain + 'planets/');
   }
 
-
-
-
   getPepolePage(id: number): Observable<Page> {
-    return this.http.get<Page>(this.domain + 'pepole/?page=' + id)
+    return this.http.get<Page>(this.domain + 'pepole/?page=' + id);
   }
 
   getPlanetsPage(id: number): Observable<Page> {
-    return this.http.get<Page>(this.domain + 'planets/?page=' + id)
+    return this.http.get<Page>(this.domain + 'planets/?page=' + id);
   }
 
   getSpeciesPage(id: number): Observable<Page> {
-    return this.http.get<Page>(this.domain + 'species/?page=' + id)
+    return this.http.get<Page>(this.domain + 'species/?page=' + id);
   }
 
   getStarSPage(id: number): Observable<Page> {
-    return this.http.get<Page>(this.domain + 'starships/?page=' + id)
+    return this.http.get<Page>(this.domain + 'starships/?page=' + id);
   }
 
   getVehiclePage(id: number): Observable<Page> {
-    return this.http.get<Page>(this.domain + 'vehicles/?page=' + id)
+    return this.http.get<Page>(this.domain + 'vehicles/?page=' + id);
   }
 
   geteFilmsPage(id: number): Observable<Page> {
-    return this.http.get<Page>(this.domain + 'films/?page=' + id)
+    return this.http.get<Page>(this.domain + 'films/?page=' + id);
   }
 
-
-
-
-
-
-
-
-  getPersonById(id:  any): Observable<People> {
+  getPersonById(id: any): Observable<People> {
     return this.http.get<People>(this.domain + 'people/' + id + '/');
   }
 
-  getFilmById(id:  any): Observable<Films> {
+  getFilmById(id: any): Observable<Films> {
     return this.http.get<Films>(this.domain + 'films/' + id + '/');
   }
 
@@ -94,16 +83,15 @@ export class EndpointService {
     return this.http.get<Planets>(this.domain + 'planets/' + id + '/');
   }
 
-  getSpeciesById(id:  any): Observable<Species> {
+  getSpeciesById(id: any): Observable<Species> {
     return this.http.get<Species>(this.domain + 'species/' + id + '/');
   }
 
-  getStarShipsById(id:  any): Observable<StarShip> {
+  getStarShipsById(id: any): Observable<StarShip> {
     return this.http.get<StarShip>(this.domain + 'starships/' + id + '/');
   }
 
-  getVehiclesById(id:  any): Observable<Vehicle> {
+  getVehiclesById(id: any): Observable<Vehicle> {
     return this.http.get<Vehicle>(this.domain + 'vehicles/' + id + '/');
   }
-
 }

@@ -20,7 +20,7 @@ import { StarShipsDataComponent } from './content/star-ships-data/star-ships-dat
 import { VehiclesDataComponent } from './content/vehicles-data/vehicles-data.component';
 import { SliderComponent } from './content/slider/slider.component';
 import { FormsModule } from '@angular/forms';
-import {SliderModule} from 'primeng/slider';
+import { SliderModule } from 'primeng/slider';
 
 @NgModule({
   declarations: [
@@ -41,14 +41,8 @@ import {SliderModule} from 'primeng/slider';
     VehiclesDataComponent,
     SliderComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    SliderModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, SliderModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
