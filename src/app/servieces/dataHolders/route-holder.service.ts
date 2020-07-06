@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class RouteHolderService {
 
-  private size = new BehaviorSubject<number>(20);
-  currentsize = this.size.asObservable();
+  // private size = new BehaviorSubject<number>(20);
+  // currentsize = this.size.asObservable();
   constructor() { }
 
-  changeVal(val: number) {
-    this.size.next(val)
-  }
+  // changeVal(val: number) {
+  //   this.size.next(val)
+  // }
 }

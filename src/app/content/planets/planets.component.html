@@ -18,7 +18,7 @@ flex-direction: column;">
     </div>
 
     <div class="name-title">
-      <a style="text-decoration: none; color: white; height: 30px;" [routerLink]="i + 1" >{{item.name}}</a>
+      <a style="text-decoration: none; color: white; height: 30px;" [routerLink]="item.id" >{{item.name}}</a>
     </div>
 
   </div>
@@ -26,11 +26,6 @@ flex-direction: column;">
   </div>
 
 </div>
-
-<div class="load-con" *ngIf="!noNextPages">
-  <button style="height: 50px; width: 70px;" (click)="getNextpage()">Load More</button>
-</div>
-
 
 
 

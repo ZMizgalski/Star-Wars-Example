@@ -13,6 +13,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 export class MainNavComponent implements OnInit {
 
 
+  value?: number;
   public bredCrumbs!: BreadCrumb[];
   constructor(private router: Router,private route: ActivatedRoute) {
     this.bredCrumbs = this.buildBreadCrumb(this.route.root)

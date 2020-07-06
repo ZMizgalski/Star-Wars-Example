@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Vehicle } from 'src/app/servieces/class/vehicles/vehicle';
 import { Router } from '@angular/router';
@@ -21,7 +21,33 @@ export class VehiclesComponent implements OnInit {
     //console.log(this.router.url)
    }
 
+   @HostListener("window:scroll", [])
+   onScroll(): void {
+     if (this.bottomReached()) {
+       this.end.getVehiclePage(this.i).subscribe(data => {
 
+        this.page = data;
+
+        if (!this.page.next) {
+          return;
+        }
+        this.vehicles = this.vehicles.concat(this.page.results);
+
+        for (let i = 0; i < this.vehicles.length; i++) {
+        const path = this.vehicles[i];
+        const result: string[] = path.url.split("/")
+        this.vehicles[i].id = result[result.length - 2] + "/";
+        }
+         const result = this.page.next.split("=")
+         // console.log(result[result.length - 1])
+         this.i = parseInt(result[result.length - 1])
+      })
+     }
+   }
+
+   bottomReached(): boolean {
+     return (window.innerHeight + window.scrollY + window.outerHeight) >= document.body.offsetHeight;
+   }
 
    i = 1;
    ngOnInit(): void {
@@ -39,13 +65,15 @@ export class VehiclesComponent implements OnInit {
       this.vehicles[i].id = result[result.length - 2] + "/";
       }
 
-      if (this.page.next === null) {
-        this.noNextPages = true
-      } else {
-       this.noNextPages = false;
+       if (!this.page.next) {
+        return;
       }
 
+       const result = this.page.next.split("=")
+       // console.log(result[result.length - 1])
+       this.i = parseInt(result[result.length - 1])
+
+       // console.log(this.starShip);
     })
    }
-
 }

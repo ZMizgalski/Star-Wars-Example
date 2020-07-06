@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, HostListener } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Films } from 'src/app/servieces/class/films/films';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { RouteHolderService } from 'src/app/servieces/dataHolders/route-holder.s
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.css']
 })
-export class FilmsComponent implements OnInit, DoCheck {
+export class FilmsComponent implements OnInit {
 
   val?: number;
   page!: Page;
@@ -20,30 +20,59 @@ export class FilmsComponent implements OnInit, DoCheck {
   loadNext = false;
   constructor(private end: EndpointService, private route: Router, private data: RouteHolderService) {
    }
+   @HostListener("window:scroll", [])
+   onScroll(): void {
+     if (this.bottomReached()) {
+       this.end.geteFilmsPage(this.i).subscribe(data => {
+
+        this.page = data;
+
+        if (!this.page.next) {
+          return;
+        }
+        this.films = this.films.concat(this.page.results);
+
+        for (let i = 0; i < this.films.length; i++) {
+        const path = this.films[i];
+        const result: string[] = path.url.split("/")
+        this.films[i].id = result[result.length - 2] + "/";
+        }
+         const result = this.page.next.split("=")
+         // console.log(result[result.length - 1])
+         this.i = parseInt(result[result.length - 1])
+      })
+     }
+   }
+
+   bottomReached(): boolean {
+     return (window.innerHeight + window.scrollY + window.outerHeight) >= document.body.offsetHeight;
+   }
 
    i = 1;
    ngOnInit(): void {
       this.getData(this.i);
-      this.data.currentsize.subscribe(val => this.val = val)
    }
 
    getData(id: number) {
-     this.end.geteFilmsPage(id).subscribe(data => {
+    this.end.geteFilmsPage(id).subscribe(data => {
+      this.page = data;
+      this.films = this.films.concat(this.page.results);
 
-       this.page = data;
+      for (let i = 0; i < this.films.length; i++) {
+      const path = this.films[i];
+      const result: string[] = path.url.split("/")
+      this.films[i].id = result[result.length - 2] + "/";
+      }
 
-       this.films = this.films.concat(this.page.results);
+       if (!this.page.next) {
+        return;
+      }
 
-       if (this.page.next === null) {
-         this.noNextPages = true
-       } else {
-        this.noNextPages = false;
-       }
+       const result = this.page.next.split("=")
+       // console.log(result[result.length - 1])
+       this.i = parseInt(result[result.length - 1])
 
+       // console.log(this.starShip);
     })
    }
-
-   ngDoCheck(): void {
-  }
-
 }

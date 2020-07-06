@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Planets } from 'src/app/servieces/class/planets/planets';
 import { Router } from '@angular/router';
@@ -17,32 +17,60 @@ export class PlanetsComponent implements OnInit {
   planets: Planets[] = [];
   constructor(private end: EndpointService, private route: Router, private routeSer: RouteHolderService) {
   }
+  @HostListener("window:scroll", [])
+   onScroll(): void {
+     if (this.bottomReached()) {
+       this.end.getVehiclePage(this.i).subscribe(data => {
 
-  i = 1;
-  ngOnInit(): void {
-     this.getData(this.i);
-  }
+        this.page = data;
 
-  getData(id: number) {
-    this.end.getPlanetsPage(id).subscribe(data => {
-      // console.log(data)
+        if (!this.page.next) {
+          return;
+        }
+        this.planets = this.planets.concat(this.page.results);
+
+        for (let i = 0; i < this.planets.length; i++) {
+        const path = this.planets[i];
+        const result: string[] = path.url.split("/")
+        this.planets[i].id = result[result.length - 2] + "/";
+        }
+         const result = this.page.next.split("=")
+         // console.log(result[result.length - 1])
+         this.i = parseInt(result[result.length - 1])
+      })
+     }
+   }
+
+   bottomReached(): boolean {
+     return (window.innerHeight + window.scrollY + window.outerHeight) >= document.body.offsetHeight;
+   }
+
+   i = 1;
+   ngOnInit(): void {
+      this.getData(this.i);
+   }
+
+   getData(id: number) {
+    this.end.getVehiclePage(id).subscribe(data => {
       this.page = data;
-      console.log(this.page);
       this.planets = this.planets.concat(this.page.results);
-      if (this.page.next === null) {
-        this.noNextPages = true
-      } else {
-       this.noNextPages = false;
+
+      for (let i = 0; i < this.planets.length; i++) {
+      const path = this.planets[i];
+      const result: string[] = path.url.split("/")
+      this.planets[i].id = result[result.length - 2] + "/";
       }
-   })
-  }
 
-  getNextpage(){
-    const result = this.page.next.split("=");
-    const ia: number = parseInt(result[1]);
-    console.log(ia);
-    this.getData(ia);
+       if (!this.page.next) {
+        return;
+      }
 
-  }
+       const result = this.page.next.split("=")
+       // console.log(result[result.length - 1])
+       this.i = parseInt(result[result.length - 1])
+
+       // console.log(this.starShip);
+    })
+   }
 
 }

@@ -22,13 +22,9 @@ items = [
   constructor(private route: Router, private data: RouteHolderService) {
    }
   ngDoCheck(): void {
-    this.data.currentsize.subscribe(val => this.val = val)
-    console.log(this.val)
   }
 
   ngOnInit(): void {
-    this.data.currentsize.subscribe(val => this.val = val)
-    console.log(this.val)
   }
 
 }

@@ -1,4 +1,5 @@
 export interface People {
+  id: string;
   birth_year: string;
   eye_color: string;
   films: string[];

@@ -1,4 +1,7 @@
+import { StaticProvider } from "@angular/core";
+
 export interface StarShip {
+  id: string;
   MGLT: string;
   cargo_capacity: string;
   consumables: string;
