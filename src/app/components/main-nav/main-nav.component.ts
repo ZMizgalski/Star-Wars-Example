@@ -5,7 +5,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { BreadCrumb } from 'src/app/servieces/class/breadCrumb/bread-crumb';
 
 @Component({
-  selector: 'app-main-nav',
+  selector: 'web-main-nav',
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css'],
 })

@@ -5,7 +5,7 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { Page } from 'src/app/servieces/class/page/page';
 
 @Component({
-  selector: 'app-item-list',
+  selector: 'web-item-list',
   template: ` <div class="loader-con" *ngIf="!loaded">
       <div class="loader">Loading...</div>
     </div>

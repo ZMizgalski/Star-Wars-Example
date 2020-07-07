@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-item-details',
+  selector: 'web-item-details',
   template: `
     <div class="loader-con" *ngIf="!loaded">
       <div class="loader">Loading...</div>

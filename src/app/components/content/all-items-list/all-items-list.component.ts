@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
 
 @Component({
-  selector: 'app-all-items-list',
+  selector: 'web-all-items-list',
   template: ` <div class="loader-con" *ngIf="!loaded">
       <div class="loader">Loading...</div>
     </div>
