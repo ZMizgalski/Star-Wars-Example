@@ -77,15 +77,4 @@ export class ItemListComponent implements OnInit {
       }
     }
   }
-
-  // getKeyNames(array: any[]) {
-  //   let executed = false;
-  //   this.notEditedArrayOfObjects = this.notEditedArrayOfObjects.reduce(objectkeys => {
-  //     if (!executed) {
-  //       executed = true;
-  //       this.keysOfItem = Object.keys(objectkeys);
-  //       return this.keysOfItem;
-  //     }
-  //   });
-  // }
 }
