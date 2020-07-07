@@ -61,6 +61,7 @@
   position: fixed;
   transform: translateY(-180px);
   min-height: 100vh;
+  opacity: 0.5;
 
 }
 
