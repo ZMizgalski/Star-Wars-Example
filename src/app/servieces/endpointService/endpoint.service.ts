@@ -20,6 +20,10 @@ export class EndpointService {
     return this.http.get(this.domain + category + '/');
   }
 
+  getItemsByPage(category: string, id: number): Observable<any> {
+    return this.http.get(this.domain + category + '/?page=' + id);
+  }
+
   getItemDetails(category: string, id: number): Observable<any> {
     return this.http.get(this.domain + category + '/' + id + '/');
   }

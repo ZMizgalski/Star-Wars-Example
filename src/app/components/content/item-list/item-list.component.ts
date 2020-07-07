@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
 import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { Page } from 'src/app/servieces/class/page/page';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'web-item-list',
@@ -40,13 +41,44 @@ export class ItemListComponent implements OnInit {
   constructor(private end: EndpointService, private router: Router, private route: ActivatedRoute) {
     this.subscribeNavigationEnd();
   }
+  routeP: string = '';
   loaded = false;
   routeParamsAvaiable = false;
   keysOfItem: string[] = [];
   pageContent!: Page;
   notEditedArrayOfObjects: any[] = [];
   editedArrayOfObjects: any[] = [];
+  i = 1;
   ngOnInit(): void {}
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (this.isBottomReached()) this.loadMore();
+  }
+
+  loadMore() {
+    this.loaded = false;
+    this.end.getItemsByPage(this.routeP, this.i).subscribe(data => {
+      if (data.next) {
+        const path: string[] = data.next.split('=');
+        this.i = parseInt(path[path.length - 1]);
+        this.notEditedArrayOfObjects = this.notEditedArrayOfObjects.concat(data.results);
+        this.editedArrayOfObjects = this.notEditedArrayOfObjects.map(object => {
+          object.customName = Object.keys(object)[0];
+          object.dynamicTag = object[object.customName];
+          const result: string[] = object.url.split('/');
+          object.id = result[result.length - 2] + '/';
+          return object;
+        });
+        // console.log(this.editedArrayOfObjects);
+        this.loaded = true;
+      }
+    });
+  }
+
+  isBottomReached() {
+    return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+  }
 
   subscribeNavigationEnd() {
     this.router.events
@@ -62,6 +94,7 @@ export class ItemListComponent implements OnInit {
     if (!this.routeParamsAvaiable) {
       this.routeParamsAvaiable = true;
       if (route != '') {
+        this.routeP = route;
         this.end.getItemsByCategory(route).subscribe(peopleFromApi => {
           this.pageContent = peopleFromApi;
           this.notEditedArrayOfObjects = this.pageContent.results;
