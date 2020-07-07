@@ -57,7 +57,7 @@ export class ItemListComponent implements OnInit {
   }
 
   loadMore() {
-    this.loaded = false;
+    // this.loaded = false;
     this.end.getItemsByPage(this.routeP, this.i).subscribe(data => {
       if (data.next) {
         const path: string[] = data.next.split('=');
@@ -71,7 +71,7 @@ export class ItemListComponent implements OnInit {
           return object;
         });
         // console.log(this.editedArrayOfObjects);
-        this.loaded = true;
+        // this.loaded = true;
       }
     });
   }
