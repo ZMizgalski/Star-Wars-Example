@@ -22,6 +22,9 @@
   .con-tiles {
     min-width: calc(100vw - 65vw) !important;
     }
+    .description-con {
+      width: 100vw;
+    }
 }
 
 @media only screen and (max-width: 800px) {

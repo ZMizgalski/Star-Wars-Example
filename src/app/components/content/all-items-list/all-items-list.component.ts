@@ -13,12 +13,16 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
           <div>
             <div class="main-con">
               <div class="char-img">
-                <p style="align-self: center; color: white;">{{ category }}</p>
+                <p
+                  style="align-self: center; color: white;font-family: Arial, Helvetica, sans-serif;"
+                >
+                  {{ category }}
+                </p>
               </div>
             </div>
             <div class="name-title">
               <a
-                style="text-decoration: none; color: white; height: 30px;"
+                style="text-decoration: none; color: white; height: 30px;font-family: Arial, Helvetica, sans-serif;"
                 [routerLink]="['/', category]"
                 >{{ category }}</a
               >

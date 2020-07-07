@@ -23,7 +23,10 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 
             <div class="char-desc-con">
               <div class="desc-data-con" *ngFor="let desc of descpitionObject">
-                <p style="word-break: break-word" *ngIf="!checkIfIsAnArray(desc.value, desc.key)">
+                <p
+                  style="word-break: break-word;font-family: Arial, Helvetica, sans-serif;"
+                  *ngIf="!checkIfIsAnArray(desc.value, desc.key)"
+                >
                   {{ desc.key }} : {{ desc.value }}
                 </p>
               </div>

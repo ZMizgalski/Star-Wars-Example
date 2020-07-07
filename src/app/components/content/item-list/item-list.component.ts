@@ -16,12 +16,16 @@ import { Page } from 'src/app/servieces/class/page/page';
           <div>
             <div class="main-con">
               <div class="char-img">
-                <p style="align-self: center;">{{ item.dynamicTag }}</p>
+                <p
+                  style="align-self: center;font-family: Arial, Helvetica, sans-serif;color: white"
+                >
+                  {{ item.dynamicTag }}
+                </p>
               </div>
             </div>
             <div class="name-title">
               <a
-                style="text-decoration: none; color: white; height: 30px;"
+                style="text-decoration: none; color: white; height: 30px;font-family: Arial, Helvetica, sans-serif;"
                 [routerLink]="item.id"
                 >{{ item.dynamicTag }}</a
               >
