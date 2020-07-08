@@ -1,0 +1,9 @@
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider-left-valueIndicator {
+  color: white;
+  margin-right: 20px
+}

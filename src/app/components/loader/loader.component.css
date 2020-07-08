@@ -1,16 +1,26 @@
-.loader,
-.loader:before,
-.loader:after {
+.loader__loader:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
   border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: load7 1.8s infinite ease-in-out;
-  animation: load7 1.8s infinite ease-in-out;
+  border: 6px solid yellow;
+  border-color: yellow transparent yellow transparent;
+  animation: loader__loader 1.2s linear infinite;
+  opacity: 1;
 }
-.loader-con {
+@keyframes loader__loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader {
   width: 100vw;
+  z-index: 999;
   background: black;
   display: flex;
   flex-direction: column;
@@ -20,32 +30,4 @@
   transform: translateY(-180px);
   min-height: 100vh;
   opacity: 0.5;
-
-}
-
-.loader {
-  color: yellow;
-  font-size: 10px;
-  margin: 80px auto;
-  position: relative;
-  text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
-.loader:before,
-.loader:after {
-  content: '';
-  position: absolute;
-  top: 0;
-}
-.loader:before {
-  left: -3.5em;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-.loader:after {
-  left: 3.5em;
 }

@@ -10,12 +10,12 @@ import { BreadCrumb } from 'src/app/servieces/class/breadCrumb/bread-crumb';
   styleUrls: ['./main-nav.component.css'],
 })
 export class MainNavComponent implements OnInit {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.bredCrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+  }
   value?: number;
   newBreadCrumbs!: BreadCrumb[];
   public bredCrumbs!: BreadCrumb[];
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.bredCrumbs = this.buildBreadCrumb(this.route.root);
-  }
 
   ngOnInit(): void {
     this.router.events
@@ -24,7 +24,7 @@ export class MainNavComponent implements OnInit {
         distinctUntilChanged()
       )
       .subscribe(() => {
-        this.bredCrumbs = this.buildBreadCrumb(this.route.root);
+        this.bredCrumbs = this.buildBreadCrumb(this.activatedRoute.root);
       });
   }
 

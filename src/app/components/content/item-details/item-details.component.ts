@@ -6,29 +6,25 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'web-item-details',
   template: `
-    <web-loader *ngIf="!loaded"></web-loader>
-    <div class="main-module-container" *ngIf="loaded">
-      <div class="main-con">
-        <div class="description-con">
-          <div class="desc-con">
-            <div class="char-desc-con">
-              <div class="desc-data-con" *ngFor="let desc of descpitionObject">
-                <p clas="desc-title" *ngIf="!checkIfIsAnArray(desc.value, desc.key)">
-                  {{ desc.key }} : {{ desc.value }}
-                </p>
-              </div>
-            </div>
+    <div class="item-details" *ngIf="loaded">
+      <div class="item-details-container">
+        <div class="item-details-left-container">
+          <div class="item-details-left-container-item" *ngFor="let desc of descpitionObject">
+            <p
+              class="item-details-left-container-item-title"
+              *ngIf="!checkIfIsAnArray(desc.value, desc.key)"
+            >
+              {{ desc.key }} : {{ desc.value }}
+            </p>
           </div>
         </div>
 
-        <div class="con-tiles">
-          <div class="films-con" *ngFor="let link of editedLinks">
-            <div class="extra-tab-links">
-              <p>{{ link.key }}</p>
-              <a class="link" *ngFor="let value of link.value" [routerLink]="['../../' + value]"
-                >Link: ({{ extractDigits(value) }})</a
-              >
-            </div>
+        <div class="item-details-right-container">
+          <div class="item-details-right-container-item" *ngFor="let link of editedLinks">
+            <p>{{ link.key }}</p>
+            <a class="link" *ngFor="let value of link.value" [routerLink]="['../../' + value]"
+              >Link: ({{ extractDigits(value) }})</a
+            >
           </div>
         </div>
       </div>

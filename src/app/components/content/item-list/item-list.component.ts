@@ -6,26 +6,25 @@ import { Page } from 'src/app/servieces/class/page/page';
 
 @Component({
   selector: 'web-item-list',
-  template: ` <web-loader *ngIf="!loaded"></web-loader>
-    <web-slider [(ngModel)]="sliderValue"></web-slider>
-    <div class="main-module-container" *ngIf="loaded">
-      <div class="container-router">
+  template: ` <web-slider [(ngModel)]="sliderValue"></web-slider>
+    <div class="item-list" *ngIf="loaded">
+      <div class="item-list-container">
         <div
-          class="item-con"
+          class="item-list-container-item"
           *ngFor="let item of editedArrayOfObjectsWithParametersForNgFor"
           [style.transform]="'scale(' + sliderValue * 0.01 + ')'"
         >
-          <div>
-            <div class="main-con">
-              <div class="char-img">
-                <p class="img-title">
-                  {{ item.dynamicTag }}
-                </p>
-              </div>
+          <div class="item-list-container-item-upperSquare">
+            <div class="item-list-container-item-upperSquare-innerSquare">
+              <p class="item-list-container-item-upperSquare-innerSquare-title">
+                {{ item.dynamicTag }}
+              </p>
             </div>
-            <div class="name-title">
-              <a class="name-title-p" [routerLink]="item.id">{{ item.dynamicTag }}</a>
-            </div>
+          </div>
+          <div class="item-list-container-item-bottomSquare">
+            <a class="item-list-container-item-bottomSquare-title" [routerLink]="item.id">{{
+              item.dynamicTag
+            }}</a>
           </div>
         </div>
       </div>

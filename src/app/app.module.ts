@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SliderModule } from 'primeng/slider';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
@@ -12,6 +12,8 @@ import { ItemListComponent } from './components/content/item-list/item-list.comp
 import { AllItemsListComponent } from './components/content/all-items-list/all-items-list.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { InterceptorProviders } from './servieces/interceptors/interceptor-providers';
+import { LoaderService } from './servieces/interceptors/loader-http-interceptor/loader.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     LoaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, SliderModule],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, InterceptorProviders, LoaderService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,15 +1,6 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SliderComponent } from './slider.component';
-import {
-  NO_ERRORS_SCHEMA,
-  asNativeElements,
-  Inject,
-  forwardRef,
-  ReflectiveInjector,
-  DebugElement,
-} from '@angular/core';
-import { element, By } from 'protractor';
+import { DebugElement } from '@angular/core';
 
 describe('SliderComponent', () => {
   let component: SliderComponent;
@@ -34,8 +25,8 @@ describe('SliderComponent', () => {
   });
 
   it('Should return values from set value', () => {
-    const spy = spyOnProperty(component, 'value', 'set');
-    component.value = 1;
+    const spy = spyOnProperty(component, 'sliderValue', 'set');
+    component.sliderValue = 1;
     expect(spy).toHaveBeenCalled();
   });
 });

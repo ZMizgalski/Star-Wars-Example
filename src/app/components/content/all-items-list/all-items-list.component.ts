@@ -3,22 +3,23 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
 
 @Component({
   selector: 'web-all-items-list',
-  template: ` <web-loader *ngIf="!loaded"></web-loader>
-    <web-slider [(ngModel)]="sliderValue"></web-slider>
-    <div class="main-module-container" *ngIf="loaded">
-      <div class="container-router">
-        <div *ngFor="let category of categories" style="margin: 10px;">
-          <div [style.transform]="'scale(' + sliderValue * 0.01 + ')'">
-            <div class="main-con">
-              <div class="char-img">
-                <p class="img-title">
-                  {{ category }}
-                </p>
-              </div>
+  template: ` <web-slider [(ngModel)]="sliderValue"></web-slider>
+    <div class="all-items-list" *ngIf="loaded">
+      <div *ngFor="let category of categories" class="all-items-list-container">
+        <div [style.transform]="'scale(' + sliderValue * 0.01 + ')'">
+          <div class="all-items-list-container-border">
+            <div class="all-items-list-container-border-inner">
+              <p class="all-items-list-container-border-inner-title">
+                {{ category }}
+              </p>
             </div>
-            <div class="name-title">
-              <a class="name-title-a" [routerLink]="['/', category]">{{ category }}</a>
-            </div>
+          </div>
+          <div class="all-items-list-container-bottomContainer">
+            <a
+              class="all-items-list-container-bottomContainer-title"
+              [routerLink]="['/', category]"
+              >{{ category }}</a
+            >
           </div>
         </div>
       </div>

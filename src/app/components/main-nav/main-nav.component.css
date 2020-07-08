@@ -1,4 +1,4 @@
-.container {
+.main-nav {
   text-align: center;
 display: flex;
 flex-flow: column;
@@ -6,32 +6,25 @@ align-content: center;
 min-height: 100vh;
 background: black;
 }
-.content {
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 100px);
-  margin-top: 30px;
-}
-.head-title {
+.main-nav-head-title-container {
   display: flex;
   text-align: center;
   justify-content: center;
   height: 100px;
 }
-.textEX-first {
+.main-nav-head-title-container-title1 {
   align-self: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: yellow;
   margin-right: 20px;
 }
-.textEX-second {
+.main-nav-head-title-container-title2 {
   align-self: center;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
-
-.navigation-con {
+.main-nav-navigation-container {
   min-height: 50px;
   display: flex;
   border-radius: 10px;
@@ -42,39 +35,46 @@ background: black;
   margin-left: 80px;
   background: white;
 }
-.breadcrumb {
+.main-nav-navigation-container-breadcrumbTitle {
   background: none;
   font-size: 0.8em;
   margin: 0;
 }
 span{
- color: gray;
- font-family: Arial, Helvetica, sans-serif;
- outline: none;
- font-weight: 900;
- text-decoration: none;
- transition: ease-in-out 0.25s;
+  color: gray;
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+  font-weight: 900;
+  text-decoration: none;
+  transition: ease-in-out 0.25s;
+ }
+   span:hover {
+     color: orange;
+   }
+   li {
+     list-style: none;
+     float: left;
+     margin: 5px;
+   }
+   li:last-child {
+     margin-right: 20px;
+   }
+   li::after {
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+     content: ">";
+     margin-left: 5px;
+     margin-right: 5px;
+     font-weight: 900;
+     color: black;
+   }
+   li:last-child::after {
+     content: "";
+   }
+.main-nav-routerOutletContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 100px);
+  margin-top: 30px;
 }
-  span:hover {
-    color: orange;
-  }
-  li {
-    list-style: none;
-    float: left;
-    margin: 5px;
-  }
-  li:last-child {
-    margin-right: 20px;
-  }
-  li::after {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    content: ">";
-    margin-left: 5px;
-    margin-right: 5px;
-    font-weight: 900;
-    color: black;
-  }
-  li:last-child::after {
-    content: "";
-  }
+
 
