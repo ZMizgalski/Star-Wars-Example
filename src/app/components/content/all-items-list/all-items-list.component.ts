@@ -6,11 +6,11 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
   template: ` <div class="loader-con" *ngIf="!loaded">
       <div class="loader">Loading...</div>
     </div>
-
+    <web-slider [(ngModel)]="value"></web-slider>
     <div class="main-module-container" *ngIf="loaded">
       <div class="container-router">
         <div *ngFor="let category of categories" style="margin: 10px;">
-          <div>
+          <div [style.transform]="'scale(' + value * 0.01 + ')'">
             <div class="main-con">
               <div class="char-img">
                 <p
@@ -34,6 +34,7 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
   styleUrls: ['./all-items-list.component.css'],
 })
 export class AllItemsListComponent implements OnInit {
+  value: number = 100;
   loaded = false;
   objectCategorie: Object = {};
   categories: string[] = [];

@@ -1,19 +1,22 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
-import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { Page } from 'src/app/servieces/class/page/page';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'web-item-list',
   template: ` <div class="loader-con" *ngIf="!loaded">
       <div class="loader">Loading...</div>
     </div>
-
+    <web-slider [(ngModel)]="value"></web-slider>
     <div class="main-module-container" *ngIf="loaded">
       <div class="container-router">
-        <div *ngFor="let item of editedArrayOfObjects" style="margin: 10px;">
+        <div
+          *ngFor="let item of editedArrayOfObjects"
+          style="margin: 10px;"
+          [style.transform]="'scale(' + value * 0.01 + ')'"
+        >
           <div>
             <div class="main-con">
               <div class="char-img">
@@ -41,6 +44,7 @@ export class ItemListComponent implements OnInit {
   constructor(private end: EndpointService, private router: Router, private route: ActivatedRoute) {
     this.subscribeNavigationEnd();
   }
+  value: number = 100;
   routeP: string = '';
   loaded = false;
   routeParamsAvaiable = false;
@@ -70,8 +74,6 @@ export class ItemListComponent implements OnInit {
           object.id = result[result.length - 2] + '/';
           return object;
         });
-        // console.log(this.editedArrayOfObjects);
-        // this.loaded = true;
       }
     });
   }
@@ -93,6 +95,7 @@ export class ItemListComponent implements OnInit {
   handleNavigationEnd(route: any) {
     if (!this.routeParamsAvaiable) {
       this.routeParamsAvaiable = true;
+
       if (route != '') {
         this.routeP = route;
         this.end.getItemsByCategory(route).subscribe(peopleFromApi => {

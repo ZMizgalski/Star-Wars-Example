@@ -11,6 +11,7 @@ import { BreadCrumb } from 'src/app/servieces/class/breadCrumb/bread-crumb';
 })
 export class MainNavComponent implements OnInit {
   value?: number;
+  newBreadCrumbs!: BreadCrumb[];
   public bredCrumbs!: BreadCrumb[];
   constructor(private router: Router, private route: ActivatedRoute) {
     this.bredCrumbs = this.buildBreadCrumb(this.route.root);
@@ -32,28 +33,24 @@ export class MainNavComponent implements OnInit {
     url: string = '',
     breadcrumbs: BreadCrumb[] = []
   ): BreadCrumb[] {
-    let label =
+    let label: any =
       route.routeConfig && route.routeConfig.data ? route.routeConfig.data.breadcrumb : '';
-    let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
-
-    const lastRoutePart: any = path?.split('/').pop();
-    const isDynamicRoute = lastRoutePart?.startsWith(':');
+    let path: any = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
+    const isDynamicRoute = path?.startsWith(':');
     if (isDynamicRoute && !!route.snapshot) {
-      const paramName = lastRoutePart?.split(':')[1];
-      path = path?.replace(lastRoutePart, route.snapshot.params[paramName]);
+      const paramName = path?.split(':')[1];
+      path = path?.replace(path, route.snapshot.params[paramName]);
       label = route.snapshot.params[paramName];
     }
-
     const nextUrl = path ? `${url}/${path}` : url;
-
     const breadcrumb: BreadCrumb = {
       label: label,
       url: nextUrl,
     };
-    const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
+    this.newBreadCrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
     if (route.firstChild) {
-      return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
+      return this.buildBreadCrumb(route.firstChild, nextUrl, this.newBreadCrumbs);
     }
-    return newBreadcrumbs;
+    return this.newBreadCrumbs;
   }
 }

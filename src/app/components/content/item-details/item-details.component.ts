@@ -9,7 +9,6 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
     <div class="loader-con" *ngIf="!loaded">
       <div class="loader">Loading...</div>
     </div>
-
     <div class="main-module-container" *ngIf="loaded">
       <div class="main-con">
         <div class="description-con">
@@ -88,7 +87,6 @@ export class ItemDetailsComponent implements OnInit {
       const result: string[] = route.split('/');
       this.category = result[result.length - 2];
       this.id = parseInt(result[result.length - 1]);
-
       this.end.getItemDetails(this.category, this.id).subscribe(details => {
         this.createDescription(details);
         this.linksAvaiable = true;
@@ -113,12 +111,10 @@ export class ItemDetailsComponent implements OnInit {
       if (Array.isArray(data.value)) {
         let key = data.key;
         let value = data.value;
-
         const routes = value.map((obj: { toString: () => string }) => {
           const result: string[] = obj.toString().split('/');
           return result[result.length - 3] + '/' + result[result.length - 2];
         });
-
         this.links.push({ key, value: routes });
         return data;
       }
