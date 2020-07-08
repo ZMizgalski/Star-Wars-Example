@@ -5,13 +5,13 @@
   border-radius: 12px;
   flex-direction: column;
   justify-content: center;
-  background: #F5EDF0;
+  background: #adad40
   }
   .char-img {
   margin: 0;
   display: flex;
   width: 180px;
-  background: #424C55;
+  background: black;
   height: 180px;
   text-align: center;
   justify-content: center;

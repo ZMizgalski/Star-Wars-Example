@@ -36,6 +36,7 @@ export class MainNavComponent implements OnInit {
     let label: any =
       route.routeConfig && route.routeConfig.data ? route.routeConfig.data.breadcrumb : '';
     let path: any = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
+
     const isDynamicRoute = path?.startsWith(':');
     if (isDynamicRoute && !!route.snapshot) {
       const paramName = path?.split(':')[1];

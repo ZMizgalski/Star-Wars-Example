@@ -6,9 +6,7 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'web-item-details',
   template: `
-    <div class="loader-con" *ngIf="!loaded">
-      <div class="loader">Loading...</div>
-    </div>
+    <web-loader *ngIf="!loaded"></web-loader>
     <div class="main-module-container" *ngIf="loaded">
       <div class="main-con">
         <div class="description-con">

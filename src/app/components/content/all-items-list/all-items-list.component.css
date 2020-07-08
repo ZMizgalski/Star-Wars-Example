@@ -5,13 +5,13 @@
   width: 120px;
   flex-direction: column;
   justify-content: center;
-  background: white;
+  background: #adad40;
   }
   .char-img {
   margin: 0;
   display: flex;
   width: 100px;
-  background:  #424C55;;
+  background:  black;;
   height: 280px;
   text-align: center;
   justify-content: center;
