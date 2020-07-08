@@ -10,6 +10,7 @@ background: black;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 100px);
+  margin-top: 30px;
 }
 .head-title {
   display: flex;
@@ -17,10 +18,19 @@ background: black;
   justify-content: center;
   height: 100px;
 }
-.textEX {
-align-self: center;
-font-family: Arial, Helvetica, sans-serif;
+.textEX-first {
+  align-self: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color: yellow;
+  margin-right: 20px;
 }
+.textEX-second {
+  align-self: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
 .navigation-con {
   min-height: 50px;
   display: flex;

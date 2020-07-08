@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
@@ -13,19 +13,9 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
       <div class="main-con">
         <div class="description-con">
           <div class="desc-con">
-            <!-- <div class="img-char-con">
-            <div class="img-char">
-              <p style="color: black;"></p>
-            </div>
-            <p style="color: black;"></p>
-          </div> -->
-
             <div class="char-desc-con">
               <div class="desc-data-con" *ngFor="let desc of descpitionObject">
-                <p
-                  style="word-break: break-word;font-family: Arial, Helvetica, sans-serif;"
-                  *ngIf="!checkIfIsAnArray(desc.value, desc.key)"
-                >
+                <p clas="desc-title" *ngIf="!checkIfIsAnArray(desc.value, desc.key)">
                   {{ desc.key }} : {{ desc.value }}
                 </p>
               </div>
@@ -34,7 +24,7 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
         </div>
 
         <div class="con-tiles">
-          <div class="films-con" *ngFor="let link of links">
+          <div class="films-con" *ngFor="let link of editedLinks">
             <div class="extra-tab-links">
               <p>{{ link.key }}</p>
               <a class="link" *ngFor="let value of link.value" [routerLink]="['../../' + value]"
@@ -48,19 +38,18 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
   `,
   styleUrls: ['./item-details.component.css'],
 })
-export class ItemDetailsComponent implements OnInit {
-  constructor(private end: EndpointService, private router: Router, private route: ActivatedRoute) {
+export class ItemDetailsComponent {
+  constructor(private endpointService: EndpointService, private router: Router) {
     this.subscribeNavigationEnd();
   }
   loaded = false;
   linksAvaiable = false;
   routes: any[] = [];
-  links: any[] = [];
+  editedLinks: any[] = [];
   descpitionObject: any[] = [];
   routeParamsAvaiable = false;
   category?: string;
   id?: number;
-  ngOnInit(): void {}
 
   checkIfIsAnArray(value: any, key: any) {
     return Array.isArray(value) || key === 'Url' ? true : false;
@@ -87,7 +76,7 @@ export class ItemDetailsComponent implements OnInit {
       const result: string[] = route.split('/');
       this.category = result[result.length - 2];
       this.id = parseInt(result[result.length - 1]);
-      this.end.getItemDetails(this.category, this.id).subscribe(details => {
+      this.endpointService.getItemDetails(this.category, this.id).subscribe(details => {
         this.createDescription(details);
         this.linksAvaiable = true;
         this.getLinks(this.descpitionObject);
@@ -106,8 +95,8 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
-  getLinks(array: any[]) {
-    array = array.map(data => {
+  getLinks(notEditedArrayWithLinks: any[]) {
+    notEditedArrayWithLinks = notEditedArrayWithLinks.map(data => {
       if (Array.isArray(data.value)) {
         let key = data.key;
         let value = data.value;
@@ -115,7 +104,7 @@ export class ItemDetailsComponent implements OnInit {
           const result: string[] = obj.toString().split('/');
           return result[result.length - 3] + '/' + result[result.length - 2];
         });
-        this.links.push({ key, value: routes });
+        this.editedLinks.push({ key, value: routes });
         return data;
       }
     });

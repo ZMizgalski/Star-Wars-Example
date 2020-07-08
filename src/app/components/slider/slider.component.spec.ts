@@ -32,4 +32,10 @@ describe('SliderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Should return values from set value', () => {
+    const spy = spyOnProperty(component, 'value', 'set');
+    component.value = 1;
+    expect(spy).toHaveBeenCalled();
+  });
 });

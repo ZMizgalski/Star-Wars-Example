@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
@@ -9,30 +9,24 @@ import { Page } from 'src/app/servieces/class/page/page';
   template: ` <div class="loader-con" *ngIf="!loaded">
       <div class="loader">Loading...</div>
     </div>
-    <web-slider [(ngModel)]="value"></web-slider>
+    <web-slider [(ngModel)]="sliderValue"></web-slider>
     <div class="main-module-container" *ngIf="loaded">
       <div class="container-router">
         <div
+          class="item-con"
           *ngFor="let item of editedArrayOfObjects"
-          style="margin: 10px;"
-          [style.transform]="'scale(' + value * 0.01 + ')'"
+          [style.transform]="'scale(' + sliderValue * 0.01 + ')'"
         >
           <div>
             <div class="main-con">
               <div class="char-img">
-                <p
-                  style="align-self: center;font-family: Arial, Helvetica, sans-serif;color: white"
-                >
+                <p class="img-title">
                   {{ item.dynamicTag }}
                 </p>
               </div>
             </div>
             <div class="name-title">
-              <a
-                style="text-decoration: none; color: white; height: 30px;font-family: Arial, Helvetica, sans-serif;"
-                [routerLink]="item.id"
-                >{{ item.dynamicTag }}</a
-              >
+              <a class="name-title-p" [routerLink]="item.id">{{ item.dynamicTag }}</a>
             </div>
           </div>
         </div>
@@ -40,20 +34,23 @@ import { Page } from 'src/app/servieces/class/page/page';
     </div>`,
   styleUrls: ['./item-list.component.css'],
 })
-export class ItemListComponent implements OnInit {
-  constructor(private end: EndpointService, private router: Router, private route: ActivatedRoute) {
+export class ItemListComponent {
+  constructor(
+    private endpointService: EndpointService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.subscribeNavigationEnd();
   }
-  value: number = 100;
-  routeP: string = '';
+  sliderValue: number = 100;
+  routePageCategory: string = '';
   loaded = false;
-  routeParamsAvaiable = false;
+  routeParamsAreAvaiable = false;
   keysOfItem: string[] = [];
   pageContent!: Page;
   notEditedArrayOfObjects: any[] = [];
   editedArrayOfObjects: any[] = [];
   i = 1;
-  ngOnInit(): void {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -61,8 +58,7 @@ export class ItemListComponent implements OnInit {
   }
 
   loadMore() {
-    // this.loaded = false;
-    this.end.getItemsByPage(this.routeP, this.i).subscribe(data => {
+    this.endpointService.getItemsByPage(this.routePageCategory, this.i).subscribe(data => {
       if (data.next) {
         const path: string[] = data.next.split('=');
         this.i = parseInt(path[path.length - 1]);
@@ -93,12 +89,12 @@ export class ItemListComponent implements OnInit {
       });
   }
   handleNavigationEnd(route: any) {
-    if (!this.routeParamsAvaiable) {
-      this.routeParamsAvaiable = true;
+    if (!this.routeParamsAreAvaiable) {
+      this.routeParamsAreAvaiable = true;
 
       if (route != '') {
-        this.routeP = route;
-        this.end.getItemsByCategory(route).subscribe(peopleFromApi => {
+        this.routePageCategory = route;
+        this.endpointService.getItemsByCategory(route).subscribe(peopleFromApi => {
           this.pageContent = peopleFromApi;
           this.notEditedArrayOfObjects = this.pageContent.results;
           this.editedArrayOfObjects = this.notEditedArrayOfObjects.map(object => {
