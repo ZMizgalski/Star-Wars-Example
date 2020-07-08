@@ -5,7 +5,7 @@
   </div>
   <div class="main-nav-navigation-container">
     <ol class="main-nav-navigation-container-breadcrumbTitle">
-      <li *ngFor="let breadcrumb of bredCrumbs">
+      <li *ngFor="let breadcrumb of bredCrumbsFinalArray">
         <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
           {{ breadcrumb.label }}
         </span>

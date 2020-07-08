@@ -42,7 +42,7 @@ describe('MainNavComponent', () => {
       routeConfig: { data: { breadcrumb: 'home' }, path: ':id' },
     };
     component.buildBreadCrumb(activatedRoute);
-    expect(component.newBreadCrumbs).toBeInstanceOf(Array);
+    expect(component.newBreadCrumbsArray).toBeInstanceOf(Array);
   });
 
   it('should return breadCrumb', async () => {
@@ -59,6 +59,6 @@ describe('MainNavComponent', () => {
     };
     component.buildBreadCrumb(activatedRoute);
     spyOn(component, 'buildBreadCrumb').and.returnValue(breadCrumbObject);
-    expect(component.newBreadCrumbs).toBeInstanceOf(Array);
+    expect(component.newBreadCrumbsArray).toBeInstanceOf(Array);
   });
 });

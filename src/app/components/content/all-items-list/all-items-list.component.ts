@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
+import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
 
 @Component({
   selector: 'web-all-items-list',
@@ -28,9 +29,9 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
 })
 export class AllItemsListComponent implements OnInit {
   sliderValue: number = 100;
-  loaded = false;
+  loaded = this.loaderService.isLoading;
   categories: string[] = [];
-  constructor(private endpointService: EndpointService) {}
+  constructor(private endpointService: EndpointService, private loaderService: LoaderService) {}
 
   ngOnInit(): void {
     this.setAllCategories();
@@ -38,7 +39,6 @@ export class AllItemsListComponent implements OnInit {
 
   setAllCategories() {
     this.endpointService.getAllcategories().subscribe((categoriesFromApi: Object) => {
-      this.loaded = true;
       return (this.categories = Object.keys(categoriesFromApi));
     });
   }

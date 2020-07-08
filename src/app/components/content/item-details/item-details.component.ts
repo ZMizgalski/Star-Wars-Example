@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
+import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
 
 @Component({
   selector: 'web-item-details',
@@ -33,17 +34,18 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./item-details.component.css'],
 })
 export class ItemDetailsComponent {
-  constructor(private endpointService: EndpointService, private router: Router) {
+  constructor(
+    private endpointService: EndpointService,
+    private router: Router,
+    private loaderService: LoaderService
+  ) {
     this.subscribeNavigationEnd();
   }
-  loaded = false;
-  linksAvaiable = false;
-  routes: any[] = [];
+  loaded = this.loaderService.isLoading;
   editedLinks: any[] = [];
+  routes: any[] = [];
   descpitionObject: any[] = [];
   routeParamsAvaiable = false;
-  category?: string;
-  id?: number;
 
   checkIfIsAnArray(value: any, key: any) {
     return Array.isArray(value) || key === 'Url' ? true : false;
@@ -68,19 +70,10 @@ export class ItemDetailsComponent {
     if (!this.routeParamsAvaiable) {
       this.routeParamsAvaiable = true;
       const result: string[] = route.split('/');
-      this.category = result[result.length - 2];
-      this.id = parseInt(result[result.length - 1]);
-      this.getItemDetails(this.category, this.id);
+      const category = result[result.length - 2];
+      const id = parseInt(result[result.length - 1]);
+      this.getItemDetails(category, id);
     }
-  }
-
-  getItemDetails(category: string, id: number) {
-    this.endpointService.getItemDetails(category, id).subscribe(details => {
-      this.createDescription(details);
-      this.linksAvaiable = true;
-      this.getLinksContent(this.descpitionObject);
-      this.loaded = true;
-    });
   }
 
   createDescription(array: any[]) {
@@ -93,18 +86,28 @@ export class ItemDetailsComponent {
     });
   }
 
+  createRoutes(arrayOfLinksToEdit: any) {
+    this.routes = arrayOfLinksToEdit.map((obj: { toString: () => string }) => {
+      const result: string[] = obj.toString().split('/');
+      return result[result.length - 3] + '/' + result[result.length - 2];
+    });
+  }
+
   getLinksContent(notEditedArrayWithLinks: any[]) {
     notEditedArrayWithLinks = notEditedArrayWithLinks.map(data => {
       if (Array.isArray(data.value)) {
         let key = data.key;
-        let value = data.value;
-        const routes = value.map((obj: { toString: () => string }) => {
-          const result: string[] = obj.toString().split('/');
-          return result[result.length - 3] + '/' + result[result.length - 2];
-        });
-        this.editedLinks.push({ key, value: routes });
+        this.createRoutes(data.value);
+        this.editedLinks.push({ key, value: this.routes });
         return data;
       }
+    });
+  }
+
+  getItemDetails(category: string, id: number) {
+    this.endpointService.getItemDetails(category, id).subscribe(details => {
+      this.createDescription(details);
+      this.getLinksContent(this.descpitionObject);
     });
   }
 }

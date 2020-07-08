@@ -3,6 +3,7 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { Page } from 'src/app/servieces/class/page/page';
+import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
 
 @Component({
   selector: 'web-item-list',
@@ -35,14 +36,14 @@ export class ItemListComponent {
   constructor(
     private endpointService: EndpointService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private loaderService: LoaderService
   ) {
     this.subscribeNavigationEnd();
   }
 
   sliderValue: number = 100;
   routePageCategory: string = '';
-  loaded = false;
+  loaded = this.loaderService.isLoading;
   routeParamsAreAvaiable = false;
   keysOfItem: string[] = [];
   pageContent!: Page;
@@ -61,11 +62,12 @@ export class ItemListComponent {
 
   loadMore() {
     this.endpointService.getItemsByPage(this.routePageCategory, this.i).subscribe(data => {
-      if (data.next) {
-        const path: string[] = data.next.split('=');
+      this.pageContent = data;
+      if (this.pageContent.next) {
+        const path: string[] = this.pageContent.next.split('=');
         this.i = parseInt(path[path.length - 1]);
         this.arrayOfObjectsWithoutDataToDisplay = this.arrayOfObjectsWithoutDataToDisplay.concat(
-          data.results
+          this.pageContent.results
         );
         this.editDataToDisplayInNgFor(this.arrayOfObjectsWithoutDataToDisplay);
       }
@@ -94,15 +96,6 @@ export class ItemListComponent {
     }
   }
 
-  getItemsByCategory(route: any) {
-    this.endpointService.getItemsByCategory(route).subscribe(peopleFromApi => {
-      this.pageContent = peopleFromApi;
-      this.arrayOfObjectsWithoutDataToDisplay = this.pageContent.results;
-      this.editDataToDisplayInNgFor(this.arrayOfObjectsWithoutDataToDisplay);
-      this.loaded = true;
-    });
-  }
-
   editDataToDisplayInNgFor(notEditedArray: any[]) {
     this.editedArrayOfObjectsWithParametersForNgFor = notEditedArray.map(object => {
       object.customName = Object.keys(object)[0];
@@ -110,6 +103,14 @@ export class ItemListComponent {
       const result: string[] = object.url.split('/');
       object.id = result[result.length - 2] + '/';
       return object;
+    });
+  }
+
+  getItemsByCategory(route: any) {
+    this.endpointService.getItemsByCategory(route).subscribe(peopleFromApi => {
+      this.pageContent = peopleFromApi;
+      this.arrayOfObjectsWithoutDataToDisplay = this.pageContent.results;
+      this.editDataToDisplayInNgFor(this.arrayOfObjectsWithoutDataToDisplay);
     });
   }
 }
