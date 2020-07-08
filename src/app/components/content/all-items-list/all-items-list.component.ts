@@ -29,20 +29,17 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
 export class AllItemsListComponent implements OnInit {
   sliderValue: number = 100;
   loaded = false;
-  objectCategorie: Object = {};
   categories: string[] = [];
-  constructor(private end: EndpointService) {}
+  constructor(private endpointService: EndpointService) {}
 
   ngOnInit(): void {
-    this.getAllCategories();
+    this.setAllCategories();
   }
 
-  getAllCategories() {
-    this.end.getAllcategories().subscribe((categoriesFromApi: Object) => {
-      this.objectCategorie = categoriesFromApi;
-      this.categories = Object.keys(this.objectCategorie);
+  setAllCategories() {
+    this.endpointService.getAllcategories().subscribe((categoriesFromApi: Object) => {
       this.loaded = true;
-      return this.categories;
+      return (this.categories = Object.keys(categoriesFromApi));
     });
   }
 }
