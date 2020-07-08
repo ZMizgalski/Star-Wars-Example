@@ -11,6 +11,7 @@ import { ItemDetailsComponent } from './components/content/item-details/item-det
 import { ItemListComponent } from './components/content/item-list/item-list.component';
 import { AllItemsListComponent } from './components/content/all-items-list/all-items-list.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SliderComponent } from './components/slider/slider.component';
     ItemListComponent,
     AllItemsListComponent,
     SliderComponent,
+    LoaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, SliderModule],
   providers: [HttpClientModule],

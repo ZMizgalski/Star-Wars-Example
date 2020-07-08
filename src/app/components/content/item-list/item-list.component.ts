@@ -6,9 +6,7 @@ import { Page } from 'src/app/servieces/class/page/page';
 
 @Component({
   selector: 'web-item-list',
-  template: ` <div class="loader-con" *ngIf="!loaded">
-      <div class="loader">Loading...</div>
-    </div>
+  template: ` <web-loader *ngIf="!loaded"></web-loader>
     <web-slider [(ngModel)]="sliderValue"></web-slider>
     <div class="main-module-container" *ngIf="loaded">
       <div class="container-router">

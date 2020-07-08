@@ -3,9 +3,7 @@ import { EndpointService } from 'src/app/servieces/endpointService/endpoint.serv
 
 @Component({
   selector: 'web-all-items-list',
-  template: ` <div class="loader-con" *ngIf="!loaded">
-      <div class="loader">Loading...</div>
-    </div>
+  template: ` <web-loader *ngIf="!loaded"></web-loader>
     <web-slider [(ngModel)]="sliderValue"></web-slider>
     <div class="main-module-container" *ngIf="loaded">
       <div class="container-router">
