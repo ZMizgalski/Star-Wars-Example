@@ -30,7 +30,7 @@ describe('AllItemsListComponent', () => {
 
   it('handle NavigationEnd to load categories form endpoint ', async(() => {
     spyOn(service, 'getAllcategories').and.returnValue(of(['asas', 'asas']));
-    component.getAllCategories();
+    component.setAllCategories();
     expect(component.categories).toBeInstanceOf(Array);
   }));
 });
