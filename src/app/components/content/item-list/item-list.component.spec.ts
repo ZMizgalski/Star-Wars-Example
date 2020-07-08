@@ -50,7 +50,7 @@ describe('ItemListComponent', () => {
       of({ results: [{ customName: '', dynamicTag: '', url: 'asasas/asas/asas/as', id: '' }] })
     );
     component.handleNavigationEnd('planets');
-    expect(component.editedArrayOfObjects).toBeInstanceOf(Array);
+    expect(component.editedArrayOfObjectsWithParametersForNgFor).toBeInstanceOf(Array);
   }));
 
   it('load more on Scrool', async(() => {
@@ -60,7 +60,7 @@ describe('ItemListComponent', () => {
 
     component.loadMore();
 
-    expect(component.editedArrayOfObjects).toBeInstanceOf(Array);
+    expect(component.editedArrayOfObjectsWithParametersForNgFor).toBeInstanceOf(Array);
   }));
 
   it('check NavigationEnd event', async () => {

@@ -76,13 +76,17 @@ export class ItemDetailsComponent {
       const result: string[] = route.split('/');
       this.category = result[result.length - 2];
       this.id = parseInt(result[result.length - 1]);
-      this.endpointService.getItemDetails(this.category, this.id).subscribe(details => {
-        this.createDescription(details);
-        this.linksAvaiable = true;
-        this.getLinks(this.descpitionObject);
-        this.loaded = true;
-      });
+      this.getItemDetails(this.category, this.id);
     }
+  }
+
+  getItemDetails(category: string, id: number) {
+    this.endpointService.getItemDetails(category, id).subscribe(details => {
+      this.createDescription(details);
+      this.linksAvaiable = true;
+      this.getLinksContent(this.descpitionObject);
+      this.loaded = true;
+    });
   }
 
   createDescription(array: any[]) {
@@ -95,7 +99,7 @@ export class ItemDetailsComponent {
     });
   }
 
-  getLinks(notEditedArrayWithLinks: any[]) {
+  getLinksContent(notEditedArrayWithLinks: any[]) {
     notEditedArrayWithLinks = notEditedArrayWithLinks.map(data => {
       if (Array.isArray(data.value)) {
         let key = data.key;
