@@ -15,13 +15,13 @@ describe('LoaderService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should show()', async () => {
+  // it('should hide()', () => {
+  //   service.hide();
+  //   expect(service.isLoading).toBeFalsy();
+  // });
+
+  it('should show()', () => {
     service.show();
     expect(service.isLoading).toBeTruthy();
-  });
-
-  it('should hide()', async () => {
-    service.hide();
-    expect(service.isLoading).toBeFalsy();
   });
 });
