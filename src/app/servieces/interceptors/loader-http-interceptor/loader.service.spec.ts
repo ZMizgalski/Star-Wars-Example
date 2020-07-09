@@ -1,7 +1,5 @@
-import { TestBed, async } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { LoaderService } from './loader.service';
-import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 
 describe('LoaderService', () => {

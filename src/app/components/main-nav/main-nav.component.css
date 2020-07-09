@@ -12,14 +12,14 @@
   justify-content: center;
   height: 100px;
 }
-.title-container__title1 {
+.title-container__title {
   align-self: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: yellow;
   margin-right: 20px;
 }
-.title-container__title2 {
+.title-container__subtitle {
   align-self: center;
   font-family: Arial, Helvetica, sans-serif;
   color: white;

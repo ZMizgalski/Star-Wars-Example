@@ -35,14 +35,15 @@ describe('MainNavComponent', () => {
     expect(component.buildBreadCrumb).toHaveBeenCalled();
   });
 
+  // tslint:disable-next-line: max-line-length
   it('should return breadCrumb from buildBreadCrumb(route: ActivatedRoute, url: string = "",breadcrumbs: BreadCrumb[] = []) mehod', async () => {
-    let breadCrumbObject: BreadCrumb[] = [{ label: 'home', url: '' }];
+    const breadCrumbObject: BreadCrumb[] = [{ label: 'home', url: '' }];
     let activatedRoute = Deceiver(ActivatedRoute);
-    activatedRoute = <any>{
+    activatedRoute = {
       snapshot: { params: {} },
       firstChild: {},
       routeConfig: { data: { breadcrumb: 'home' }, path: ':id' },
-    };
+    } as any;
     component.buildBreadCrumb(activatedRoute);
     spyOn(component, 'buildBreadCrumb').and.returnValue(breadCrumbObject);
     expect(component.buildBreadCrumb).toHaveBeenCalled;

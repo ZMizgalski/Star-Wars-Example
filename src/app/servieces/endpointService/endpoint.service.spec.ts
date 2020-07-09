@@ -24,7 +24,7 @@ describe('EndpointService', () => {
   it('should reach getItemDetails(category: string, id: number) endpoint', async () => {
     const category = 'species';
     const id = 1;
-    const object = <any>{};
+    const object = {} as any;
 
     service.getItemDetails(category, id).subscribe(emp => {
       expect(emp).toEqual(object);
@@ -33,7 +33,7 @@ describe('EndpointService', () => {
 
   it('should reach getItemsByCategory(category: string) endpoint', async () => {
     const category = 'species';
-    const object = <any>{};
+    const object = {} as any;
 
     service.getItemsByCategory(object).subscribe(emp => {
       expect(emp).toEqual(object);

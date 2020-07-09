@@ -87,11 +87,11 @@ describe('ItemListComponent', () => {
   }));
 
   it('check NavigationEnd event', async () => {
-    let component = TestBed.createComponent(ItemListComponent).componentInstance;
-    spyOn(component, 'handleNavigationEnd');
+    const testComponent = TestBed.createComponent(ItemListComponent).componentInstance;
+    spyOn(testComponent, 'handleNavigationEnd');
     const router: Router = TestBed.get(Router);
     router.navigateByUrl('');
     await fixture.whenStable();
-    expect(component.handleNavigationEnd).toHaveBeenCalled();
+    expect(testComponent.handleNavigationEnd).toHaveBeenCalled();
   });
 });
