@@ -104,6 +104,7 @@ export class ItemListComponent {
       object.id = result[result.length - 2] + '/';
       return object;
     });
+    console.log(this.editedArrayOfObjectsWithParametersForNgFor);
   }
 
   getItemsByCategory(route: any) {

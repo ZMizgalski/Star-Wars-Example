@@ -36,7 +36,7 @@ describe('ItemDetailsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create ItemDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
@@ -67,14 +67,13 @@ describe('ItemDetailsComponent', () => {
     expect(word2).toBe('2');
   });
 
-  // TODO : check if returns array of keys with values of links!!
-
-  it('handle NavigationEnd to load item details form endpoint getItemDetails(category: string, id:number) ', async(() => {
+  it('handle NavigationEnd() method to load item details form endpoint getItemDetails(category: string, id:number) ', async(() => {
     spyOn(service, 'getItemDetails').and.returnValue(
-      of({ results: [{ key: 'name', value: 'asasas' }] })
+      of({ results: [{ key: 'People', value: ['people/27'] }] })
     );
-    component.handleNavigationEnd('planets');
-    expect(component.descpitionObject).toBeInstanceOf(Array);
+    const testArray = [{ key: 'Results', value: [{ key: 'People', value: ['people/27'] }] }];
+    component.handleNavigationEnd('species');
+    expect(component.descpitionObject).toEqual(testArray);
   }));
 
   it('check NavigationEnd event', async () => {

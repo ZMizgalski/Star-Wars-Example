@@ -46,11 +46,7 @@ describe('MainNavComponent', () => {
   });
 
   it('should return breadCrumb', async () => {
-    let breadCrumbObject: BreadCrumb[] = [
-      { label: 'home', url: '' },
-      { label: 'Characters', url: '/people' },
-      { label: '1', url: '/people/1' },
-    ];
+    let breadCrumbObject: BreadCrumb[] = [{ label: 'home', url: '' }];
     let activatedRoute = Deceiver(ActivatedRoute);
     activatedRoute = <any>{
       snapshot: { params: {} },

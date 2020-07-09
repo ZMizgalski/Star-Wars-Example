@@ -45,22 +45,45 @@ describe('ItemListComponent', () => {
     expect(component.onWindowScroll()).toBeUndefined;
   }));
 
-  it('handle NavigationEnd to load categories form endpoint ', async(() => {
+  it('handle NavigationEnd() method to load items by categorie form endpoint getItemsByCategory(category: string) ', async(() => {
     spyOn(service, 'getItemsByCategory').and.returnValue(
-      of({ results: [{ customName: '', dynamicTag: '', url: 'asasas/asas/asas/as', id: '' }] })
+      of({
+        results: [
+          { customName: '', dynamicTag: '', url: 'http://swapi.dev/api/species/1/', id: '' },
+        ],
+      })
     );
+    const testArray = [
+      {
+        customName: 'customName',
+        dynamicTag: 'customName',
+        url: 'http://swapi.dev/api/species/1/',
+        id: '1/',
+      },
+    ];
     component.handleNavigationEnd('planets');
-    expect(component.editedArrayOfObjectsWithParametersForNgFor).toBeInstanceOf(Array);
+    expect(component.editedArrayOfObjectsWithParametersForNgFor).toEqual(testArray);
   }));
 
-  it('load more on Scrool', async(() => {
+  it('should load more on Scrool with endpoint getItemsByPage(category: string, page: number)', async(() => {
     spyOn(service, 'getItemsByPage').and.returnValue(
-      of({ next: 'sdssd=asas', results: [{ name: 'asas', url: 'asasas/asas/asas/as', id: '' }] })
+      of({
+        next: 'planets/?page=2',
+        results: [{ name: 'asas', url: 'asasas/asas/planets/2', id: '' }],
+      })
     );
-
+    const testArray = [
+      {
+        name: 'asas',
+        customName: 'name',
+        dynamicTag: 'asas',
+        url: 'asasas/asas/planets/2',
+        id: 'planets/',
+      },
+    ];
     component.loadMore();
 
-    expect(component.editedArrayOfObjectsWithParametersForNgFor).toBeInstanceOf(Array);
+    expect(component.editedArrayOfObjectsWithParametersForNgFor).toEqual(testArray);
   }));
 
   it('check NavigationEnd event', async () => {

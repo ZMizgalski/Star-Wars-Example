@@ -52,6 +52,7 @@ export class MainNavComponent implements OnInit {
     if (route.firstChild) {
       return this.buildBreadCrumb(route.firstChild, nextUrl, this.newBreadCrumbsArray);
     }
+    console.log(this.newBreadCrumbsArray);
     return this.newBreadCrumbsArray;
   }
 }
