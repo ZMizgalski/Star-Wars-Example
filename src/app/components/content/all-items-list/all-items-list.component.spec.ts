@@ -28,9 +28,10 @@ describe('AllItemsListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('handle NavigationEnd to load categories form endpoint ', async(() => {
-    spyOn(service, 'getAllcategories').and.returnValue(of(['asas', 'asas']));
+  it('should setAllCategories() ', async(() => {
+    spyOn(service, 'getAllcategories').and.returnValue(of(['asas', 'assa']));
     component.setAllCategories();
-    expect(component.categories).toBeInstanceOf(Array);
+    let keys = ['asas', 'assa'];
+    expect(component.categories).toContain(Object.keys(keys)[0]);
   }));
 });

@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { LoaderService } from './loader.service';
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 describe('LoaderService', () => {
   let service: LoaderService;
@@ -15,10 +16,12 @@ describe('LoaderService', () => {
     expect(service).toBeTruthy();
   });
 
-  // it('should hide()', () => {
-  //   service.hide();
-  //   expect(service.isLoading).toBeFalsy();
-  // });
+  it('should hide()', () => {
+    service.hide();
+    const loading = new Subject<boolean>();
+    loading.next(false);
+    expect(service.isLoading).toEqual(loading);
+  });
 
   it('should show()', () => {
     service.show();

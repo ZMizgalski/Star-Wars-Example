@@ -40,20 +40,36 @@ describe('ItemDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('check if return value is in an Array', async () => {
+  it('check if return value is in an Array (value is not an Array)', async () => {
     const value = ['http://swapi.dev/api/species/2/'];
     const key = 'Species';
     component.checkIfIsAnArray(value, key);
     expect(component.checkIfIsAnArray).toBeFalsy;
   });
 
-  it('check if it can extract digits from string', async () => {
-    const word = 'asaskask21123n';
-    const word2 = component.extractDigits(word);
-    expect(word2).toBeInstanceOf(String);
+  it('check if return value is in an Array (value is an Array)', async () => {
+    const value = ['http://swapi.dev/api/species/2/', 'http://swapi.dev/api/species/3/'];
+    const key = 'Species';
+    component.checkIfIsAnArray(value, key);
+    expect(component.checkIfIsAnArray).toBeTruthy;
   });
 
-  it('handle NavigationEnd to load item details form endpoint ', async(() => {
+  it('check if this method can catch url key from an Array', async () => {
+    const value = ['http://swapi.dev/api/species/2/'];
+    const key = 'Url';
+    component.checkIfIsAnArray(value, key);
+    expect(component.checkIfIsAnArray).toBeFalsy;
+  });
+
+  it('check if it can extract digits from string', async () => {
+    const word = 'http://swapi.dev/api/species/2';
+    const word2 = component.extractDigits(word);
+    expect(word2).toBe('2');
+  });
+
+  // TODO : check if returns array of keys with values of links!!
+
+  it('handle NavigationEnd to load item details form endpoint getItemDetails(category: string, id:number) ', async(() => {
     spyOn(service, 'getItemDetails').and.returnValue(
       of({ results: [{ key: 'name', value: 'asasas' }] })
     );
