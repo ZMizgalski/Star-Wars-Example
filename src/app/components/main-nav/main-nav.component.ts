@@ -42,6 +42,7 @@ export class MainNavComponent implements OnInit {
       const paramName = path?.split(':')[1];
       path = path?.replace(path, route.snapshot.params[paramName]);
       label = route.snapshot.params[paramName];
+      console.log(path);
     }
     const nextUrl = path ? `${url}/${path}` : url;
     const breadcrumb: BreadCrumb = {
@@ -52,7 +53,6 @@ export class MainNavComponent implements OnInit {
     if (route.firstChild) {
       return this.buildBreadCrumb(route.firstChild, nextUrl, this.newBreadCrumbsArray);
     }
-    console.log(this.newBreadCrumbsArray);
     return this.newBreadCrumbsArray;
   }
 }

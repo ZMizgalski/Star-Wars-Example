@@ -35,17 +35,7 @@ describe('MainNavComponent', () => {
     expect(component.buildBreadCrumb).toHaveBeenCalled();
   });
 
-  it('check if can split routeParam', async () => {
-    let activatedRoute = Deceiver(ActivatedRoute);
-    activatedRoute = <any>{
-      snapshot: { params: {} },
-      routeConfig: { data: { breadcrumb: 'home' }, path: ':id' },
-    };
-    component.buildBreadCrumb(activatedRoute);
-    expect(component.newBreadCrumbsArray).toBeInstanceOf(Array);
-  });
-
-  it('should return breadCrumb', async () => {
+  it('should return breadCrumb from buildBreadCrumb(route: ActivatedRoute, url: string = "",breadcrumbs: BreadCrumb[] = []) mehod', async () => {
     let breadCrumbObject: BreadCrumb[] = [{ label: 'home', url: '' }];
     let activatedRoute = Deceiver(ActivatedRoute);
     activatedRoute = <any>{
@@ -55,6 +45,6 @@ describe('MainNavComponent', () => {
     };
     component.buildBreadCrumb(activatedRoute);
     spyOn(component, 'buildBreadCrumb').and.returnValue(breadCrumbObject);
-    expect(component.newBreadCrumbsArray).toBeInstanceOf(Array);
+    expect(component.buildBreadCrumb).toHaveBeenCalled;
   });
 });
