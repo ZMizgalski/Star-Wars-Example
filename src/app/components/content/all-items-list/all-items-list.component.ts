@@ -5,22 +5,20 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
 @Component({
   selector: 'web-all-items-list',
   template: ` <web-slider ngDefaultControl [(ngModel)]="sliderValue"></web-slider>
-    <div class="all-items-list" *ngIf="loaded">
-      <div *ngFor="let category of categories" class="all-items-list-container">
+    <div class="main" *ngIf="loaded">
+      <div *ngFor="let category of categories" class="main-top-container">
         <div [style.transform]="'scale(' + sliderValue * 0.01 + ')'">
-          <div class="all-items-list-container-border">
-            <div class="all-items-list-container-border-inner-box">
-              <p class="all-items-list-container-border-inner-box__title">
+          <div class="top-container-border">
+            <div class="border-container-inner-box">
+              <p class="border-container-inner-box__title">
                 {{ category }}
               </p>
             </div>
           </div>
-          <div class="all-items-list-container-bottom-container">
-            <a
-              class="all-items-list-container-bottom-container__title"
-              [routerLink]="['/', category]"
-              >{{ category }}</a
-            >
+          <div class="main-bottom-container">
+            <a class="main-bottom-container__title" [routerLink]="['/', category]">{{
+              category
+            }}</a>
           </div>
         </div>
       </div>

@@ -8,24 +8,22 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
 @Component({
   selector: 'web-item-list',
   template: ` <web-slider ngDefaultControl [(ngModel)]="sliderValue"></web-slider>
-    <div class="item-list" *ngIf="loaded">
-      <div class="item-list-container">
+    <div class="main" *ngIf="loaded">
+      <div class="main-container">
         <div
-          class="item-list-container-item"
+          class="main-container-item"
           *ngFor="let item of editedArrayOfObjectsWithParametersForNgFor"
           [style.transform]="'scale(' + sliderValue * 0.01 + ')'"
         >
-          <div class="item-list-container-item-upper-square">
-            <div class="item-list-container-item-upper-square-inner-square">
-              <p class="item-list-container-item-upper-square-inner-square__title">
+          <div class="item-container-upper-square">
+            <div class="upper-square-inner-square">
+              <p class="upper-square-inner-square__title">
                 {{ item.dynamicTag }}
               </p>
             </div>
           </div>
-          <div class="item-list-container-item-bottom-square">
-            <a class="item-list-container-item-bottom-square__title" [routerLink]="item.id">{{
-              item.dynamicTag
-            }}</a>
+          <div class="item-container-bottom-square">
+            <a class="bottom-square__title" [routerLink]="item.id">{{ item.dynamicTag }}</a>
           </div>
         </div>
       </div>

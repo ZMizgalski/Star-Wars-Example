@@ -1,4 +1,4 @@
-.main-nav {
+.main {
   text-align: center;
   display: flex;
   flex-flow: column;
@@ -6,25 +6,25 @@
   min-height: 100vh;
   background: black;
 }
-.main-nav-title-container {
+.main-title-container {
   display: flex;
   text-align: center;
   justify-content: center;
   height: 100px;
 }
-.main-nav-title-container__title1 {
+.title-container__title1 {
   align-self: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: yellow;
   margin-right: 20px;
 }
-.main-nav-title-container__title2 {
+.title-container__title2 {
   align-self: center;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
-.main-nav-navigation-container {
+.navigation-container {
   min-height: 50px;
   display: flex;
   border-radius: 10px;
@@ -35,12 +35,12 @@
   margin-left: 80px;
   background: white;
 }
-.main-nav-navigation-container__breadcrumb-title {
+.navigation-container__breadcrumb-title {
   background: none;
   font-size: 0.8em;
   margin: 0;
 }
-.main-nav-router-outlet-container {
+.router-outlet-container {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 100px);

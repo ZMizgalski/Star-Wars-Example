@@ -4,9 +4,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'web-slider',
   template: `<div class="slider">
-    <h3 class="slider__left-side-text">{{ rawSliderValue }}</h3>
+    <h3 class="slider__left-side-text">{{ sliderValue }}</h3>
     <p-slider
       [(ngModel)]="sliderValue"
+      (ngModelChange)="sliderValueChange()"
       [min]="50"
       [max]="100"
       [style]="{ width: '14em' }"
@@ -23,15 +24,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class SliderComponent implements ControlValueAccessor {
   rawSliderValue = 0;
+  sliderValue = 100;
   onChange: any = () => {};
   onTouch: any = () => {};
 
-  set sliderValue(sliderValue: number) {
-    if (sliderValue !== undefined && this.rawSliderValue !== sliderValue) {
-      this.rawSliderValue = sliderValue;
-      this.onChange(sliderValue);
-      this.onTouch(sliderValue);
-    }
+  public sliderValueChange(): void {
+    this.onChange(this.sliderValue);
+    this.onTouch(this.sliderValue);
   }
 
   writeValue(obj: any): void {

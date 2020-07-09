@@ -6,7 +6,7 @@
     transform: rotate(360deg);
   }
 }
-.loader__loader:after {
+.loader-container__loader:after {
   content: " ";
   display: block;
   width: 64px;
@@ -18,7 +18,7 @@
   animation: loader__loader 1.2s linear infinite;
   opacity: 1;
 }
-.loader {
+.loader-container {
   width: 100vw;
   z-index: 999;
   background: black;

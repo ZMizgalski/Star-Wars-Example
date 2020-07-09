@@ -7,24 +7,21 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
 @Component({
   selector: 'web-item-details',
   template: `
-    <div class="item-details" *ngIf="loaded">
-      <div class="item-details-container">
-        <div class="item-details-left-container">
-          <div class="item-details-left-container-item" *ngFor="let desc of descpitionObject">
-            <p
-              class="item-details-left-container-item__title"
-              *ngIf="!checkIfIsAnArray(desc.value, desc.key)"
-            >
+    <div class="main">
+      <div class="main-container" *ngIf="loaded">
+        <div class="left-container">
+          <div class="left-container-item" *ngFor="let desc of descpitionObject">
+            <p class="left-container-item__title" *ngIf="!checkIfIsAnArray(desc.value, desc.key)">
               {{ desc.key }} : {{ desc.value }}
             </p>
           </div>
         </div>
 
-        <div class="item-details-right-container">
-          <div class="item-details-right-container-item" *ngFor="let link of editedLinks">
+        <div class="right-container">
+          <div class="right-container-item" *ngFor="let link of editedLinks">
             <p>{{ link.key }}</p>
             <a
-              class="item-details-right-container-item__link"
+              class="right-container-item__link"
               *ngFor="let value of link.value"
               [routerLink]="['../../' + value]"
               >Link: ({{ extractDigits(value) }})</a
