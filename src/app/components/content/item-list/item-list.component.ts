@@ -1,13 +1,13 @@
 import { Component, HostListener } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { Page } from 'src/app/servieces/class/page/page';
 import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
 
 @Component({
   selector: 'web-item-list',
-  template: ` <web-slider [(ngModel)]="sliderValue"></web-slider>
+  template: ` <web-slider ngDefaultControl [(ngModel)]="sliderValue"></web-slider>
     <div class="item-list" *ngIf="loaded">
       <div class="item-list-container">
         <div
@@ -15,15 +15,15 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
           *ngFor="let item of editedArrayOfObjectsWithParametersForNgFor"
           [style.transform]="'scale(' + sliderValue * 0.01 + ')'"
         >
-          <div class="item-list-container-item-upperSquare">
-            <div class="item-list-container-item-upperSquare-innerSquare">
-              <p class="item-list-container-item-upperSquare-innerSquare-title">
+          <div class="item-list-container-item-upper-square">
+            <div class="item-list-container-item-upper-square-inner-square">
+              <p class="item-list-container-item-upper-square-inner-square__title">
                 {{ item.dynamicTag }}
               </p>
             </div>
           </div>
-          <div class="item-list-container-item-bottomSquare">
-            <a class="item-list-container-item-bottomSquare-title" [routerLink]="item.id">{{
+          <div class="item-list-container-item-bottom-square">
+            <a class="item-list-container-item-bottom-square__title" [routerLink]="item.id">{{
               item.dynamicTag
             }}</a>
           </div>
@@ -41,31 +41,33 @@ export class ItemListComponent {
     this.subscribeNavigationEnd();
   }
 
-  sliderValue: number = 100;
-  routePageCategory: string = '';
+  sliderValue = 100;
+  routePageCategory = '';
   loaded = this.loaderService.isLoading;
   routeParamsAreAvaiable = false;
   keysOfItem: string[] = [];
   pageContent!: Page;
   arrayOfObjectsWithoutDataToDisplay: any[] = [];
   editedArrayOfObjectsWithParametersForNgFor: any[] = [];
-  i = 1;
+  pageIndex = 1;
 
   @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (this.isBottomReached()) this.loadMore();
+  public onWindowScroll(): void {
+    if (this.isBottomReached()) {
+      this.loadMore();
+    }
   }
 
-  isBottomReached() {
+  public isBottomReached(): boolean {
     return window.innerHeight + window.scrollY >= document.body.offsetHeight;
   }
 
-  loadMore() {
-    this.endpointService.getItemsByPage(this.routePageCategory, this.i).subscribe(data => {
+  public loadMore(): void {
+    this.endpointService.getItemsByPage(this.routePageCategory, this.pageIndex).subscribe(data => {
       this.pageContent = data;
       if (this.pageContent.next) {
         const path: string[] = this.pageContent.next.split('=');
-        this.i = parseInt(path[path.length - 1]);
+        this.pageIndex = parseInt(path[path.length - 1], 10);
         this.arrayOfObjectsWithoutDataToDisplay = this.arrayOfObjectsWithoutDataToDisplay.concat(
           this.pageContent.results
         );
@@ -74,7 +76,7 @@ export class ItemListComponent {
     });
   }
 
-  subscribeNavigationEnd() {
+  public subscribeNavigationEnd(): void {
     this.router.events
       .pipe(
         filter((event: any) => event instanceof NavigationEnd),
@@ -85,18 +87,18 @@ export class ItemListComponent {
       });
   }
 
-  handleNavigationEnd(route: any) {
+  public handleNavigationEnd(route: any): void {
     if (!this.routeParamsAreAvaiable) {
       this.routeParamsAreAvaiable = true;
 
-      if (route != '') {
+      if (route !== '') {
         this.routePageCategory = route;
         this.getItemsByCategory(route);
       }
     }
   }
 
-  editDataToDisplayInNgFor(notEditedArray: any[]) {
+  public editDataToDisplayInNgFor(notEditedArray: any[]): void {
     this.editedArrayOfObjectsWithParametersForNgFor = notEditedArray.map(object => {
       object.customName = Object.keys(object)[0];
       object.dynamicTag = object[object.customName];
@@ -104,10 +106,9 @@ export class ItemListComponent {
       object.id = result[result.length - 2] + '/';
       return object;
     });
-    console.log(this.editedArrayOfObjectsWithParametersForNgFor);
   }
 
-  getItemsByCategory(route: any) {
+  public getItemsByCategory(route: any): void {
     this.endpointService.getItemsByCategory(route).subscribe(peopleFromApi => {
       this.pageContent = peopleFromApi;
       this.arrayOfObjectsWithoutDataToDisplay = this.pageContent.results;

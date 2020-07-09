@@ -1,18 +1,18 @@
 <div class="main-nav">
-  <div class="main-nav-head-title-container">
-    <p class="main-nav-head-title-container-title1">Star Wars</p>
-    <p class="main-nav-head-title-container-title2">A visual guide</p>
+  <div class="main-nav-title-container">
+    <p class="main-nav-title-container__title1">Star Wars</p>
+    <p class="main-nav--title-container__title2">A visual guide</p>
   </div>
   <div class="main-nav-navigation-container">
-    <ol class="main-nav-navigation-container-breadcrumbTitle">
+    <ol class="main-nav-navigation-container__breadcrumb-title">
       <li *ngFor="let breadcrumb of bredCrumbsFinalArray">
-        <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+        <span [routerLink]="breadcrumb.url">
           {{ breadcrumb.label }}
         </span>
       </li>
     </ol>
   </div>
-  <div class="main-nav-routerOutletContainer">
+  <div class="main-nav-router-outlet-container">
     <web-loader></web-loader>
     <router-outlet></router-outlet>
   </div>

@@ -4,11 +4,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'web-slider',
   template: `<div class="slider">
-    <h3 class="slider-left-valueIndicator">{{ rawSliderValue }}</h3>
+    <h3 class="slider__left-side-text">{{ rawSliderValue }}</h3>
     <p-slider
       [(ngModel)]="sliderValue"
       [min]="50"
-      [max]="max"
+      [max]="100"
       [style]="{ width: '14em' }"
     ></p-slider>
   </div> `,
@@ -22,8 +22,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class SliderComponent implements ControlValueAccessor {
-  rawSliderValue?: number = 0;
-  max?: number = 100;
+  rawSliderValue = 0;
   onChange: any = () => {};
   onTouch: any = () => {};
 

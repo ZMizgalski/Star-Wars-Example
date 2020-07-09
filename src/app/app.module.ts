@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SliderModule } from 'primeng/slider';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
@@ -28,5 +27,6 @@ import { LoaderService } from './servieces/interceptors/loader-http-interceptor/
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, SliderModule],
   providers: [HttpClientModule, InterceptorProviders, LoaderService],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

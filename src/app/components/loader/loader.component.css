@@ -1,3 +1,11 @@
+@keyframes loader__loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .loader__loader:after {
   content: " ";
   display: block;
@@ -9,14 +17,6 @@
   border-color: yellow transparent yellow transparent;
   animation: loader__loader 1.2s linear infinite;
   opacity: 1;
-}
-@keyframes loader__loader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 .loader {
   width: 100vw;

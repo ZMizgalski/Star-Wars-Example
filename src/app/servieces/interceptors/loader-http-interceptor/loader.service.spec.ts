@@ -24,7 +24,9 @@ describe('LoaderService', () => {
   });
 
   it('should show()', () => {
-    service.show();
-    expect(service.isLoading).toBeTruthy();
+    service.hide();
+    const loading = new Subject<boolean>();
+    loading.next(true);
+    expect(service.isLoading).toEqual(loading);
   });
 });

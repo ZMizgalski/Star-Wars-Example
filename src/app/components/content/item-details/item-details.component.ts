@@ -12,7 +12,7 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
         <div class="item-details-left-container">
           <div class="item-details-left-container-item" *ngFor="let desc of descpitionObject">
             <p
-              class="item-details-left-container-item-title"
+              class="item-details-left-container-item__title"
               *ngIf="!checkIfIsAnArray(desc.value, desc.key)"
             >
               {{ desc.key }} : {{ desc.value }}
@@ -23,7 +23,10 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
         <div class="item-details-right-container">
           <div class="item-details-right-container-item" *ngFor="let link of editedLinks">
             <p>{{ link.key }}</p>
-            <a class="link" *ngFor="let value of link.value" [routerLink]="['../../' + value]"
+            <a
+              class="item-details-right-container-item__link"
+              *ngFor="let value of link.value"
+              [routerLink]="['../../' + value]"
               >Link: ({{ extractDigits(value) }})</a
             >
           </div>
@@ -47,15 +50,15 @@ export class ItemDetailsComponent {
   descpitionObject: any[] = [];
   routeParamsAvaiable = false;
 
-  checkIfIsAnArray(value: any, key: any) {
+  public checkIfIsAnArray(value: any, key: any): boolean {
     return Array.isArray(value) || key === 'Url' ? true : false;
   }
 
-  extractDigits(word: string) {
+  public extractDigits(word: string): string {
     return word.replace(/^\D+/g, '');
   }
 
-  subscribeNavigationEnd() {
+  public subscribeNavigationEnd(): void {
     this.router.events
       .pipe(
         filter((event: any) => event instanceof NavigationEnd),
@@ -66,37 +69,37 @@ export class ItemDetailsComponent {
       });
   }
 
-  handleNavigationEnd(route: any) {
+  public handleNavigationEnd(route: any): void {
     if (!this.routeParamsAvaiable) {
       this.routeParamsAvaiable = true;
       const result: string[] = route.split('/');
       const category = result[result.length - 2];
-      const id = parseInt(result[result.length - 1]);
+      const id = parseInt(result[result.length - 1], 10);
       this.getItemDetails(category, id);
     }
   }
 
-  createDescription(array: any[]) {
+  public createDescription(array: any[]): void {
     this.descpitionObject = Object.entries(array).map(entity => {
       const value = entity[1];
       const key = entity[0];
       const subbedString = key.charAt(0).toUpperCase() + key.slice(1);
-      let editedString = subbedString.replace('_', ' ');
-      return { key: editedString, value: value };
+      const editedString = subbedString.replace('_', ' ');
+      return { key: editedString, value };
     });
   }
 
-  createRoutes(arrayOfLinksToEdit: any) {
+  public createRoutes(arrayOfLinksToEdit: any): void {
     this.routes = arrayOfLinksToEdit.map((obj: { toString: () => string }) => {
       const result: string[] = obj.toString().split('/');
       return result[result.length - 3] + '/' + result[result.length - 2];
     });
   }
 
-  getLinksContent(notEditedArrayWithLinks: any[]) {
+  public getLinksContent(notEditedArrayWithLinks: any[]): void {
     notEditedArrayWithLinks = notEditedArrayWithLinks.map(data => {
       if (Array.isArray(data.value)) {
-        let key = data.key;
+        const key = data.key;
         this.createRoutes(data.value);
         this.editedLinks.push({ key, value: this.routes });
         return data;
@@ -104,7 +107,7 @@ export class ItemDetailsComponent {
     });
   }
 
-  getItemDetails(category: string, id: number) {
+  public getItemDetails(category: string, id: number): void {
     this.endpointService.getItemDetails(category, id).subscribe(details => {
       this.createDescription(details);
       this.getLinksContent(this.descpitionObject);

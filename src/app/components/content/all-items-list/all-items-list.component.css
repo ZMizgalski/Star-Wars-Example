@@ -18,34 +18,34 @@
   flex-direction: column;
   justify-content: center;
   background: #adad40;
-  }
-  .all-items-list-container-border-inner {
+}
+.all-items-list-container-border-inner-box {
   margin: 0;
   display: flex;
   width: 100px;
-  background:  black;;
+  background: black;
   height: 280px;
   text-align: center;
   justify-content: center;
   align-self: center;
-
-  }
-  .all-items-list-container-border-inner-title {
+}
+.all-items-list-container-border-inner-box__title {
   display: flex;
   justify-content: center;
   align-self: center;
   color: white;
   margin-top: 20px;
-  }
-
-.all-items-list-container-bottomContainer {
-  align-self: center;
-   color: white;
-   font-family: Arial, Helvetica, sans-serif;
-   margin-top: 20px;
 }
-.all-items-list-container-bottomContainer-title {
+
+.all-items-list-container-bottom-container {
+  align-self: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 20px;
+}
+.all-items-list-container-bottom-container__title {
   text-decoration: none;
-   color: white;
-   height: 30px;font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
 }

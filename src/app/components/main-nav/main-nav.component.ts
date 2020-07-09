@@ -46,7 +46,7 @@ export class MainNavComponent implements OnInit {
     }
     const nextUrl = path ? `${url}/${path}` : url;
     const breadcrumb: BreadCrumb = {
-      label: label,
+      label,
       url: nextUrl,
     };
     this.newBreadCrumbsArray = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
