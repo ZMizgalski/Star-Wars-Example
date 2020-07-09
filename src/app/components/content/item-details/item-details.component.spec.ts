@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { Description } from 'src/app/servieces/class/description/description';
 
 @Component({ template: `` })
 class TestEmptyComponent {}
@@ -71,9 +72,9 @@ describe('ItemDetailsComponent', () => {
     spyOn(service, 'getItemDetails').and.returnValue(
       of({ results: [{ key: 'People', value: ['people/27'] }] })
     );
-    const testArray = [{ key: 'Results', value: [{ key: 'People', value: ['people/27'] }] }];
+    const testArray: any = [{ key: 'Results', value: [{ key: 'People', value: ['people/27'] }] }];
     component.handleNavigationEnd('species');
-    expect(component.descpitionObject).toEqual(testArray);
+    expect(component.arrayOfDescriptonData).toEqual(testArray);
   }));
 
   it('check NavigationEnd event', async () => {

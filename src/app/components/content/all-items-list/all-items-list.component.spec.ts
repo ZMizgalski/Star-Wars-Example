@@ -31,7 +31,7 @@ describe('AllItemsListComponent', () => {
   it('should setAllCategories() ', async(() => {
     spyOn(service, 'getAllcategories').and.returnValue(of(['asas', 'assa']));
     component.setAllCategories();
-    let keys = ['asas', 'assa'];
+    const keys = ['asas', 'assa'];
     expect(component.categories).toContain(Object.keys(keys)[0]);
   }));
 });

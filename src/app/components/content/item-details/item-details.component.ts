@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { filter, distinctUntilChanged } from 'rxjs/operators';
+import { filter, distinctUntilChanged, take, first } from 'rxjs/operators';
 import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
+import { EditedLinks } from 'src/app/servieces/class/editedLinks/edited-links';
+import { Description } from 'src/app/servieces/class/description/description';
 
 @Component({
   selector: 'web-item-details',
@@ -10,7 +12,7 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
     <div class="main">
       <div class="main-container" *ngIf="loaded">
         <div class="left-container">
-          <div class="left-container-item" *ngFor="let desc of descpitionObject">
+          <div class="left-container-item" *ngFor="let desc of arrayOfDescriptonData">
             <p class="left-container-item__title" *ngIf="!checkIfIsAnArray(desc.value, desc.key)">
               {{ desc.key }} : {{ desc.value }}
             </p>
@@ -18,7 +20,7 @@ import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interc
         </div>
 
         <div class="right-container">
-          <div class="right-container-item" *ngFor="let link of editedLinks">
+          <div class="right-container-item" *ngFor="let link of editedLinksArray">
             <p>{{ link.key }}</p>
             <a
               class="right-container-item__link"
@@ -42,10 +44,9 @@ export class ItemDetailsComponent {
     this.subscribeNavigationEnd();
   }
   loaded = this.loaderService.isLoading;
-  editedLinks: any[] = [];
-  routes: any[] = [];
-  descpitionObject: any[] = [];
-  routeParamsAvaiable = false;
+  editedLinksArray: EditedLinks[] = [];
+  routesArray: string[] = [];
+  arrayOfDescriptonData: Description[] = [];
 
   public checkIfIsAnArray(value: any, key: any): boolean {
     return Array.isArray(value) || key === 'Url' ? true : false;
@@ -67,17 +68,14 @@ export class ItemDetailsComponent {
   }
 
   public handleNavigationEnd(route: any): void {
-    if (!this.routeParamsAvaiable) {
-      this.routeParamsAvaiable = true;
-      const result: string[] = route.split('/');
-      const category = result[result.length - 2];
-      const id = parseInt(result[result.length - 1], 10);
-      this.getItemDetails(category, id);
-    }
+    const result: string[] = route.split('/');
+    const category = result[result.length - 2];
+    const id = parseInt(result[result.length - 1], 10);
+    this.getItemDetails(category, id);
   }
 
-  public createDescription(array: any[]): void {
-    this.descpitionObject = Object.entries(array).map(entity => {
+  private createDescription(array: any[]): void {
+    this.arrayOfDescriptonData = Object.entries(array).map(entity => {
       const value = entity[1];
       const key = entity[0];
       const subbedString = key.charAt(0).toUpperCase() + key.slice(1);
@@ -86,28 +84,28 @@ export class ItemDetailsComponent {
     });
   }
 
-  public createRoutes(arrayOfLinksToEdit: any): void {
-    this.routes = arrayOfLinksToEdit.map((obj: { toString: () => string }) => {
+  private createRoutes(arrayOfLinksToEdit: any): void {
+    this.routesArray = arrayOfLinksToEdit.map((obj: { toString: () => string }) => {
       const result: string[] = obj.toString().split('/');
       return result[result.length - 3] + '/' + result[result.length - 2];
     });
   }
 
-  public getLinksContent(notEditedArrayWithLinks: any[]): void {
+  private getLinksContent(notEditedArrayWithLinks: any[]): void {
     notEditedArrayWithLinks = notEditedArrayWithLinks.map(data => {
       if (Array.isArray(data.value)) {
         const key = data.key;
         this.createRoutes(data.value);
-        this.editedLinks.push({ key, value: this.routes });
+        this.editedLinksArray.push({ key, value: this.routesArray });
         return data;
       }
     });
   }
 
-  public getItemDetails(category: string, id: number): void {
+  private getItemDetails(category: string, id: number): void {
     this.endpointService.getItemDetails(category, id).subscribe(details => {
       this.createDescription(details);
-      this.getLinksContent(this.descpitionObject);
+      this.getLinksContent(this.arrayOfDescriptonData);
     });
   }
 }
