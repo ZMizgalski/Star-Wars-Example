@@ -3,8 +3,8 @@ import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged, take, first } from 'rxjs/operators';
 import { LoaderService } from 'src/app/servieces/loader.service';
-import { EditedLinks } from 'src/app/interfaces/edited-links';
-import { Description } from 'src/app/interfaces/description';
+import { EditedLinks } from 'src/interfacesManager';
+import { Description } from 'src/interfacesManager';
 @Component({
   selector: 'web-item-details',
   template: `
