@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
+import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged, take, first } from 'rxjs/operators';
-import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
-import { EditedLinks } from 'src/app/servieces/class/editedLinks/edited-links';
-import { Description } from 'src/app/servieces/class/description/description';
-
+import { LoaderService } from 'src/app/servieces/loader.service';
+import { EditedLinks } from 'src/app/interfaces/edited-links';
+import { Description } from 'src/app/interfaces/description';
 @Component({
   selector: 'web-item-details',
   template: `

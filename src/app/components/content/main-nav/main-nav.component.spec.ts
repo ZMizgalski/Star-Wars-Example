@@ -3,9 +3,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MainNavComponent } from './main-nav.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Deceiver } from 'deceiver-core';
-import { BreadCrumb } from 'src/app/servieces/class/breadCrumb/bread-crumb';
-
 describe('MainNavComponent', () => {
   let component: MainNavComponent;
   let fixture: ComponentFixture<MainNavComponent>;

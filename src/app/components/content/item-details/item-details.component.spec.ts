@@ -3,7 +3,7 @@ import { ItemDetailsComponent } from './item-details.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
-import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
+import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 

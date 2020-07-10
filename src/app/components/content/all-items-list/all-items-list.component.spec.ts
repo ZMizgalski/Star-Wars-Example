@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AllItemsListComponent } from './all-items-list.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
+import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { of } from 'rxjs';
 
 describe('AllItemsListComponent', () => {

@@ -1,10 +1,9 @@
 import { Component, HostListener } from '@angular/core';
-import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
+import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
-import { Page } from 'src/app/servieces/class/page/page';
-import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
-
+import { LoaderService } from 'src/app/servieces/loader.service';
+import { Page } from 'src/app/interfaces/page';
 @Component({
   selector: 'web-item-list',
   template: ` <web-slider ngDefaultControl [(ngModel)]="sliderValue"></web-slider>

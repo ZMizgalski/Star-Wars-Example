@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ItemListComponent } from './item-list.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
+import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';

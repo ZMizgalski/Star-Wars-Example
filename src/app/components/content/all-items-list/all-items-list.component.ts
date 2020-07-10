@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
+import { EndpointService } from 'src/app/servieces/endpoint.service';
 import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
 
 @Component({

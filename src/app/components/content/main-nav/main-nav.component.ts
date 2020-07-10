@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { BreadCrumb } from 'src/app/servieces/class/breadCrumb/bread-crumb';
-
+import { BreadCrumb } from 'src/app/interfaces/bread-crumb';
 @Component({
   selector: 'web-main-nav',
   templateUrl: './main-nav.component.html',

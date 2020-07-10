@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
 import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/servieces/loader.service';
 
 @Component({
   selector: 'web-loader',
