@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpointService/endpoint.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
-import { Description } from 'src/app/servieces/class/description/description';
 
 @Component({ template: `` })
 class TestEmptyComponent {}
@@ -39,27 +38,6 @@ describe('ItemDetailsComponent', () => {
 
   it('should create ItemDetailsComponent', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('check if return value is in an Array (value is not an Array)', async () => {
-    const value = ['http://swapi.dev/api/species/2/'];
-    const key = 'Species';
-    component.checkIfIsAnArray(value, key);
-    expect(component.checkIfIsAnArray).toBeFalsy;
-  });
-
-  it('check if return value is in an Array (value is an Array)', async () => {
-    const value = ['http://swapi.dev/api/species/2/', 'http://swapi.dev/api/species/3/'];
-    const key = 'Species';
-    component.checkIfIsAnArray(value, key);
-    expect(component.checkIfIsAnArray).toBeTruthy;
-  });
-
-  it('check if this method can catch url key from an Array', async () => {
-    const value = ['http://swapi.dev/api/species/2/'];
-    const key = 'Url';
-    component.checkIfIsAnArray(value, key);
-    expect(component.checkIfIsAnArray).toBeFalsy;
   });
 
   it('check if it can extract digits from string', async () => {

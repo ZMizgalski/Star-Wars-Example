@@ -41,10 +41,6 @@ describe('ItemListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('onWindowScroll when HostListener', async(() => {
-    expect(component.onWindowScroll()).toBeUndefined;
-  }));
-
   it('handle NavigationEnd() method to load items by categorie form endpoint getItemsByCategory(category: string) ', async(() => {
     spyOn(service, 'getItemsByCategory').and.returnValue(
       of({
