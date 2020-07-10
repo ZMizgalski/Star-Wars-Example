@@ -14,6 +14,20 @@
 }
 .main-container-item {
   margin: 10px;
+  transition: ease-in-out 1s;
+  transition-duration: 1s;
+  animation: fadein 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .item-container-upper-square {
   display: flex;

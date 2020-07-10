@@ -25,7 +25,6 @@ export class MainNavComponent implements OnInit {
       )
       .subscribe(() => {
         this.bredCrumbsFinalArray = this.buildBreadCrumb(this.activatedRoute.root);
-        console.log(this.bredCrumbsFinalArray);
       });
   }
 
