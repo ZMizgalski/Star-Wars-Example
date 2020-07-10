@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointService } from 'src/app/servieces/endpoint.service';
-import { LoaderService } from 'src/app/servieces/interceptors/loader-http-interceptor/loader.service';
-
+import { LoaderService } from 'src/app/servieces/loader.service';
 @Component({
   selector: 'web-all-items-list',
   template: ` <web-slider ngDefaultControl [(ngModel)]="sliderValue"></web-slider>
