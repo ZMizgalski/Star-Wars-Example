@@ -5,6 +5,7 @@
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
+* [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
@@ -25,6 +26,12 @@ List the ready features here:
 - Responsive Design
 - Breadcrumb
 - Http interceptor
+
+## Screenshots
+![img](https://github.com/ZMizgalski/Star-Wars-Example/blob/Upgraded/imgs/1.png)
+![img](https://github.com/ZMizgalski/Star-Wars-Example/blob/Upgraded/imgs/2.png)
+![img](https://github.com/ZMizgalski/Star-Wars-Example/blob/Upgraded/imgs/3.png)
+![img](https://github.com/ZMizgalski/Star-Wars-Example/blob/Upgraded/imgs/4.png)
 
 ## Setup
 - npm i
